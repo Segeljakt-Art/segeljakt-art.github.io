@@ -83,6 +83,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .slide-dot.is-active { background: var(--accent); }
 .slide-dot:focus-visible { outline-offset: 5px; }
 .gallery-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 25px; color: var(--muted); font-size: 9px; }
+.mobile-swipe-hint { display: none; }
 .gallery-bottom span:last-child { color: var(--accent); font-size: 19px; font-weight: 400; }
 
 .content-section { padding: 95px clamp(38px, 6.2vw, 100px) 105px; border-top: 1px solid var(--line); scroll-margin-top: 0; }
@@ -106,48 +107,128 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .artwork-stage { height: clamp(360px, 50vw, 540px); }
 }
 @media (max-width: 760px) {
-  .site-shell { display: block; }
-  .sidebar { position: relative; height: auto; min-height: 0; flex-direction: row; align-items: center; justify-content: space-between; gap: 15px; padding: 17px 22px; border-right: 0; border-bottom: 1px solid var(--line); }
+  :root { --sidebar-width: 126px; }
+  .sidebar { min-height: 0; padding: 25px 16px 23px; }
   .sidebar-brand { font-size: 35px; }
-  .sidebar-inner { margin: 0; flex: 1; overflow-x: auto; }
-  .sidebar-label, .sidebar-footer { display: none; }
-  .site-nav { display: flex; justify-content: flex-end; gap: 21px; border: 0; }
-  .nav-link { min-height: 0; display: block; padding: 5px 0; border: 0; font-size: 11px; white-space: nowrap; }
-  .nav-link:hover, .nav-link.is-active { padding-left: 0; }
-  .nav-number, .nav-arrow { display: none; }
-  .site-header { min-height: 128px; padding: 25px 24px; }
-  .artist-name { font-size: clamp(38px, 8.3vw, 61px); white-space: normal; }
-  .gallery-section { min-height: auto; padding: 40px 24px 45px; }
+  .sidebar-inner { margin-top: 100px; }
+  .sidebar-label { margin-left: 0; font-size: 9px; }
+  .sidebar-footer { font-size: 9px; }
+  .sidebar-footer p { display: none; }
+  .site-nav { display: block; }
+  .nav-link { min-height: 62px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; font-size: 11px; }
+  .nav-number { font-size: 8px; }
+  .nav-arrow { display: none; }
+  .site-header { min-height: 145px; padding: 26px 22px; }
+  .artist-name { font-size: clamp(38px, 7vw, 61px); white-space: normal; }
+  .gallery-section { min-height: auto; padding: 40px 22px 45px; }
   .section-intro { align-items: start; flex-direction: column; gap: 13px; margin-bottom: 23px; }
   .intro-copy { max-width: 450px; }
-  .artwork-stage { height: clamp(330px, 75vw, 500px); padding: 38px 48px; }
-  .content-section { padding: 75px 24px 80px; }
+  .artwork-stage { height: clamp(305px, 62vw, 470px); padding: 36px 34px; }
+  .content-section { padding: 75px 22px 80px; }
   .content-grid { gap: 25px; }
-  .site-footer { padding-inline: 24px; }
+  .site-footer { padding-inline: 22px; }
 }
 @media (max-width: 540px) {
-  .sidebar { flex-wrap: wrap; }
-  .sidebar-inner { flex-basis: 100%; order: 2; }
-  .site-nav { justify-content: space-between; gap: 9px; }
-  .nav-link { font-size: 12px; }
-  .site-header { min-height: 120px; }
-  .gallery-section { padding-top: 33px; }
-  h1 { font-size: 41px; }
-  .artwork-stage { height: 370px; padding: 49px 25px 47px; }
-  .stage-label { right: 22px; top: 26px; writing-mode: horizontal-tb; }
-  .stage-corner-top { top: 19px; left: 19px; }
-  .stage-corner-bottom { right: 19px; bottom: 19px; }
-  .slideshow-footer { align-items: flex-end; }
+  html, body { height: 100%; overflow: hidden; }
+  :root { --sidebar-width: 84px; }
+  .site-shell { height: 100dvh; min-height: 0; }
+  .sidebar { height: 100dvh; min-height: 0; overflow: hidden; padding: 19px 10px; }
+  .sidebar-brand { font-size: 31px; }
+  .sidebar-inner { margin-top: clamp(32px, 8vh, 80px); }
+  .sidebar-label { margin-bottom: 12px; font-size: 8px; }
+  .nav-link { min-height: 65px; font-size: 10px; }
+  .page-content { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .site-header { flex: none; min-height: 112px; padding: 18px 16px; }
+  .artist-name { font-size: clamp(36px, 10vw, 46px); }
+  .header-eyebrow { font-size: 8px; }
+  main { flex: 1; min-height: 0; overflow: hidden; }
+  main > section { display: none; }
+  main > section.is-mobile-active { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .gallery-section { justify-content: center; padding: 14px 16px; }
+  .section-intro { flex: none; gap: 6px; margin-bottom: 13px; }
+  h1 { font-size: clamp(29px, 7.7vw, 37px); }
+  .intro-copy { font-size: 10px; line-height: 1.45; }
+  .slideshow { flex: none; min-height: 0; display: flex; flex-direction: column; }
+  .artwork-stage { flex: none; height: clamp(205px, 37dvh, 315px); padding: 32px 20px 21px; touch-action: pan-y; }
+  .painting-wrap { min-height: 0; }
+  .stage-label { right: 17px; top: 22px; writing-mode: horizontal-tb; font-size: 7px; }
+  .stage-corner-top { top: 16px; left: 16px; }
+  .stage-corner-bottom { right: 16px; bottom: 16px; }
+  .slideshow-footer { flex: none; align-items: center; flex-direction: row; gap: 7px; padding: 11px 0 10px; }
   .artwork-details { gap: 8px; }
-  .artwork-index { min-width: 44px; }
-  .artwork-details h2 { font-size: 21px; }
-  .artwork-details p { max-width: 170px; line-height: 1.5; }
-  .slideshow-controls { gap: 6px; }
-  .arrow-button { width: 37px; height: 37px; font-size: 18px; }
-  .play-toggle { width: 27px; margin-right: 0; }
+  .artwork-index { min-width: 38px; font-size: 8px; }
+  .artwork-details h2 { font-size: 17px; }
+  .artwork-details p { display: none; }
+  .slideshow-controls { flex: none; gap: 3px; }
+  .arrow-button { width: 33px; height: 33px; font-size: 17px; }
+  .play-toggle { width: 24px; margin-right: 0; font-size: 14px; }
+  .gallery-bottom { display: flex; margin-top: 12px; }
+  .desktop-scroll-hint { display: none; }
+  .mobile-swipe-hint { display: inline; }
+  .gallery-bottom span:last-child { font-size: 0; }
+  .gallery-bottom span:last-child::after { content: "↔"; font-size: 17px; }
+  .content-section { justify-content: center; padding: 24px 16px; }
   .content-grid { display: block; }
-  .content-grid h2 { margin-bottom: 24px; }
-  .site-footer { flex-wrap: wrap; line-height: 1.7; }
+  .content-grid h2 { margin-bottom: 24px; font-size: 38px; }
+  .content-copy { font-size: 13px; line-height: 1.6; }
+  .coming-soon { min-width: 0; width: 100%; }
+  .site-footer { display: none; }
+}
+@media (max-width: 540px) and (max-height: 650px) {
+  .sidebar-inner { margin-top: 25px; }
+  .sidebar-label { display: none; }
+  .nav-link { min-height: 54px; }
+  .site-header { min-height: 91px; padding-block: 12px; }
+  .artist-name { font-size: 34px; }
+  .gallery-section { padding-top: 11px; }
+  .section-intro { margin-bottom: 8px; }
+  .section-intro h1 { font-size: 27px; }
+  .intro-copy { display: none; }
+  .artwork-stage { height: clamp(125px, 27dvh, 195px); }
+  .artwork-stage { padding-top: 27px; padding-bottom: 15px; }
+  .stage-label { display: none; }
+  .slideshow-footer { padding-block: 7px; }
+}
+@media (max-width: 360px) {
+  .slideshow-footer { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .slideshow-controls { align-self: flex-end; }
+}
+@media (min-width: 541px) and (max-width: 900px) and (max-height: 500px) {
+  html, body { height: 100%; overflow: hidden; }
+  :root { --sidebar-width: 104px; }
+  .site-shell { height: 100dvh; min-height: 0; }
+  .sidebar { height: 100dvh; min-height: 0; overflow: hidden; padding: 12px; }
+  .sidebar-brand { font-size: 29px; }
+  .sidebar-inner { margin-top: 16px; }
+  .sidebar-label, .sidebar-footer, .nav-number, .nav-arrow { display: none; }
+  .nav-link { min-height: 38px; display: flex; font-size: 10px; }
+  .page-content { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .site-header { flex: none; min-height: 66px; padding: 9px 20px; }
+  .header-eyebrow { margin-bottom: 2px; font-size: 7px; }
+  .artist-name { font-size: 33px; }
+  .header-note { display: none; }
+  main { flex: 1; min-height: 0; overflow: hidden; }
+  main > section { display: none; }
+  main > section.is-mobile-active { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .gallery-section { justify-content: center; padding: 7px 20px; }
+  .section-intro { flex: none; margin-bottom: 5px; }
+  .section-intro h1 { margin-top: 3px; font-size: 24px; }
+  .intro-copy { display: none; }
+  .slideshow { flex: none; display: flex; flex-direction: column; }
+  .artwork-stage { flex: none; height: clamp(105px, 45dvh, 175px); padding: 15px 25px; touch-action: pan-y; }
+  .stage-label { display: none; }
+  .painting-wrap { min-height: 0; }
+  .slideshow-footer { flex: none; padding: 5px 0; }
+  .artwork-details h2 { font-size: 18px; }
+  .artwork-details p, .gallery-bottom, .site-footer { display: none; }
+  .arrow-button { width: 32px; height: 32px; }
+  .play-toggle { width: 24px; }
+  .content-section { justify-content: center; padding: 15px 20px; }
+  .content-grid { display: block; margin-top: 8px; }
+  .content-grid h2 { max-width: none; margin-bottom: 8px; font-size: 31px; }
+  .content-copy { max-width: none; padding: 0; font-size: 11px; line-height: 1.4; }
+  .content-copy p { margin-bottom: 5px; }
+  .coming-soon, .event-placeholder { margin-top: 8px !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

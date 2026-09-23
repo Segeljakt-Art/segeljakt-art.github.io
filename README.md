@@ -1,6 +1,6 @@
 # Segeljakt art — Andreas Segeljakt
 
-A responsive, single-page art gallery based on the supplied sketch. The sidebar links to the gallery, artist information, contact area, and calendar. The central painting slideshow includes four clearly labeled sample artworks.
+A responsive, single-page art gallery based on the supplied sketch. The sidebar links to the gallery, artist information, contact area, and calendar. The central painting slideshow includes four clearly labeled sample artworks. On phones, the sidebar switches sections within one screen, and visitors can swipe left or right across the painting to move through the slideshow.
 
 ## Preview locally
 
