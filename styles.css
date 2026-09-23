@@ -90,6 +90,29 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .site-footer a { color: var(--ink); text-decoration: none; }
 .site-footer a:hover { color: var(--accent); }
 
+@media (min-width: 541px) {
+  html, body { height: 100%; overflow: hidden; }
+  .site-shell { height: 100dvh; min-height: 0; }
+  .sidebar { height: 100dvh; min-height: 0; overflow: hidden; }
+  .page-content { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .site-header { flex: none; height: clamp(102px, 18dvh, 175px); min-height: 0; padding-block: clamp(15px, 2.5dvh, 29px); }
+  main { flex: 1; min-height: 0; overflow: hidden; }
+  main > section { display: none; }
+  main > section.is-current { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .gallery-section { min-height: 0; padding-block: clamp(14px, 2.6dvh, 32px) clamp(8px, 1.5dvh, 20px); }
+  .slideshow { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .artwork-stage { flex: 1; min-height: 0; height: auto; }
+  .slideshow-footer { flex: none; padding-block: clamp(9px, 1.6dvh, 17px); }
+  .gallery-bottom, .site-footer { display: none; }
+  .content-section { padding-block: clamp(20px, 7dvh, 80px); }
+}
+@media (min-width: 901px) and (max-height: 650px) {
+  .sidebar { padding-block: 16px; }
+  .sidebar-inner { margin-top: 22px; }
+  .sidebar-label { margin-bottom: 10px; }
+  .nav-link { min-height: 50px; }
+  .sidebar-footer p { display: none; }
+}
 @media (max-width: 1100px) {
   :root { --sidebar-width: 184px; }
   .sidebar { padding-inline: 18px; }
@@ -133,7 +156,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .header-eyebrow { font-size: 8px; }
   main { flex: 1; min-height: 0; overflow: hidden; }
   main > section { display: none; }
-  main > section.is-mobile-active { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  main > section.is-current { display: flex; flex-direction: column; height: 100%; min-height: 0; }
   .gallery-section { justify-content: flex-start; padding: 12px 12px 14px; }
   .section-intro { flex: none; gap: 6px; margin-bottom: 9px; }
   h1 { font-size: clamp(29px, 7.7vw, 37px); }
@@ -185,13 +208,13 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .sidebar-label, .sidebar-footer, .nav-number, .nav-arrow { display: none; }
   .nav-link { min-height: 38px; display: flex; font-size: 10px; }
   .page-content { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-  .site-header { flex: none; min-height: 66px; padding: 9px 20px; }
+  .site-header { flex: none; height: 66px; min-height: 66px; padding: 9px 20px; }
   .header-eyebrow { margin-bottom: 2px; font-size: 7px; }
   .artist-name { font-size: 33px; }
   .header-note { display: none; }
   main { flex: 1; min-height: 0; overflow: hidden; }
   main > section { display: none; }
-  main > section.is-mobile-active { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  main > section.is-current { display: flex; flex-direction: column; height: 100%; min-height: 0; }
   .gallery-section { justify-content: flex-start; padding: 7px 16px; }
   .section-intro { flex: none; margin-bottom: 5px; }
   .section-intro h1 { margin-top: 3px; font-size: 24px; }

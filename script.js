@@ -89,11 +89,10 @@ swipeArea.addEventListener("pointercancel", () => { pointerStart = null; });
 
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = navLinks.map(link => document.querySelector(link.getAttribute("href")));
-const mobileLayout = window.matchMedia("(max-width: 540px), (max-width: 900px) and (max-height: 500px)");
 
-function activateMobileSection(id) {
+function activateSection(id) {
   const target = sections.find(section => section.id === id) || sections[0];
-  sections.forEach(section => section.classList.toggle("is-mobile-active", section === target));
+  sections.forEach(section => section.classList.toggle("is-current", section === target));
   navLinks.forEach(link => {
     const active = link.getAttribute("href") === `#${target.id}`;
     link.classList.toggle("is-active", active);
@@ -103,37 +102,15 @@ function activateMobileSection(id) {
 }
 
 navLinks.forEach(link => link.addEventListener("click", event => {
-  if (!mobileLayout.matches) return;
   event.preventDefault();
   const id = link.getAttribute("href").slice(1);
   window.history.pushState(null, "", `#${id}`);
-  activateMobileSection(id);
+  activateSection(id);
 }));
 
-window.addEventListener("popstate", () => {
-  if (mobileLayout.matches) activateMobileSection(window.location.hash.slice(1));
-});
-window.addEventListener("hashchange", () => {
-  if (mobileLayout.matches) activateMobileSection(window.location.hash.slice(1));
-});
-mobileLayout.addEventListener("change", event => {
-  if (event.matches) activateMobileSection(window.location.hash.slice(1));
-  else sections.forEach(section => section.classList.remove("is-mobile-active"));
-});
-
-const observer = new IntersectionObserver(entries => {
-  if (mobileLayout.matches) return;
-  const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-  if (!visible) return;
-  navLinks.forEach(link => {
-    const active = link.getAttribute("href") === `#${visible.target.id}`;
-    link.classList.toggle("is-active", active);
-    if (active) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
-  });
-}, { rootMargin: "-20% 0px -45% 0px", threshold: [0, .2, .5, 1] });
-sections.forEach(section => observer.observe(section));
-if (mobileLayout.matches) activateMobileSection(window.location.hash.slice(1));
+window.addEventListener("popstate", () => activateSection(window.location.hash.slice(1)));
+window.addEventListener("hashchange", () => activateSection(window.location.hash.slice(1)));
+activateSection(window.location.hash.slice(1));
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector("#footer-year").textContent = new Date().getFullYear();
