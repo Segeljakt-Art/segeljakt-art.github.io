@@ -28,11 +28,10 @@ img { max-width: 100%; }
 .brand-dot, .name-period { color: var(--accent); }
 .sidebar-inner { margin-top: clamp(90px, 18vh, 185px); }
 .sidebar-label, .eyebrow, .sidebar-footer, .header-note, .stage-label, .gallery-bottom, .coming-soon, .event-placeholder, .site-footer { font-size: 10px; font-weight: 700; letter-spacing: .16em; }
-.sidebar-label { margin: 0 0 23px 17px; color: var(--muted); }
+.sidebar-label { margin: 0 0 23px; color: var(--muted); }
 .site-nav { border-top: 1px solid var(--line); }
-.nav-link { min-height: 66px; display: grid; grid-template-columns: 28px 1fr 15px; align-items: center; column-gap: 9px; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s, padding .2s; }
+.nav-link { min-height: 66px; display: grid; grid-template-columns: minmax(0, 1fr) 15px; align-items: center; column-gap: 9px; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s, padding .2s; }
 .nav-link:hover, .nav-link.is-active { color: var(--accent); padding-left: 5px; }
-.nav-number { font-size: 9px; color: #9a9c93; }
 .nav-arrow { justify-self: end; font-size: 17px; font-weight: 400; opacity: 0; transform: translate(-3px, 3px); transition: opacity .2s, transform .2s; }
 .nav-link:hover .nav-arrow, .nav-link.is-active .nav-arrow { opacity: 1; transform: none; }
 .sidebar-footer { margin-top: auto; color: var(--muted); line-height: 1.8; }
@@ -129,7 +128,6 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .sidebar-footer p { display: none; }
   .site-nav { display: block; }
   .nav-link { min-height: 62px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; font-size: 11px; }
-  .nav-number { font-size: 8px; }
   .nav-arrow { display: none; }
   .site-header { min-height: 145px; padding: 26px 22px; }
   .artist-name { font-size: clamp(38px, 7vw, 61px); white-space: normal; }
@@ -205,7 +203,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .sidebar { height: 100dvh; min-height: 0; overflow: hidden; padding: 10px; }
   .sidebar-brand { font-size: 29px; }
   .sidebar-inner { margin-top: 16px; }
-  .sidebar-label, .sidebar-footer, .nav-number, .nav-arrow { display: none; }
+  .sidebar-label, .sidebar-footer, .nav-arrow { display: none; }
   .nav-link { min-height: 38px; display: flex; font-size: 10px; }
   .page-content { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
   .site-header { flex: none; height: 66px; min-height: 66px; padding: 9px 20px; }
