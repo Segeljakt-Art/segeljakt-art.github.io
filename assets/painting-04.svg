@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" role="img" aria-labelledby="title">
+  <title id="title">Abstract geometric sample artwork in plum, blush, and ochre</title>
+  <defs>
+    <linearGradient id="cream" x2="1" y2="1"><stop stop-color="#e8d8c9"/><stop offset="1" stop-color="#ccb6a7"/></linearGradient>
+    <linearGradient id="plum" x2="1" y2=".7"><stop stop-color="#78515b"/><stop offset="1" stop-color="#433d4b"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".56" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="900" height="680" fill="url(#cream)"/>
+  <path d="M0 0h462v379H0Z" fill="#d8b4a9"/>
+  <path d="M455 0h445v319H455Z" fill="url(#plum)"/>
+  <path d="M0 378h333v302H0Z" fill="#bf895e"/>
+  <path d="M334 318h566v362H334Z" fill="#d7c2ac"/>
+  <path d="M457 0v320H333v360" fill="none" stroke="#f0dfcb" stroke-width="14" opacity=".72"/>
+  <path d="M0 375h337M459 320h441" fill="none" stroke="#6b4d4c" stroke-width="5" opacity=".6"/>
+  <circle cx="635" cy="472" r="156" fill="#925b58"/>
+  <circle cx="635" cy="472" r="127" fill="#a96961"/>
+  <path d="M632 315a157 157 0 0 1 155 157c0 85-69 155-155 155Z" fill="#714d58"/>
+  <path d="M532 500c55-15 119-20 190-10M551 535c54-10 106-11 159-4" fill="none" stroke="#d7aa8a" stroke-width="4" opacity=".6"/>
+  <path d="M143 35c61 73 78 164 71 256M183 36c55 80 68 158 59 241" fill="none" stroke="#eed1bd" stroke-width="15" opacity=".7"/>
+  <path d="M38 475c61-35 129-40 207-24M23 517c84-39 172-32 267-8" fill="none" stroke="#e7bb8b" stroke-width="4" opacity=".6"/>
+  <path d="M470 82h348M490 119h318M500 157h312" fill="none" stroke="#b28b8d" stroke-width="3" opacity=".55"/>
+  <path d="M328 337c-27-44-69-67-119-70 16 58 58 83 119 70ZM331 336c43-56 91-73 134-55-30 53-69 71-134 55Z" fill="#cba57e"/>
+  <rect width="900" height="680" filter="url(#grain)" opacity=".57"/>
+  <rect x="3" y="3" width="894" height="674" fill="none" stroke="#765e59" stroke-opacity=".19" stroke-width="6"/>
+</svg>

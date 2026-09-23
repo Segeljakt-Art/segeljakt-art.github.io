@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" role="img" aria-labelledby="title">
+  <title id="title">Abstract sample artwork in terracotta, cream, and blue</title>
+  <defs>
+    <linearGradient id="paper" x2=".95" y2="1"><stop stop-color="#e9dcc6"/><stop offset="1" stop-color="#d9c4a6"/></linearGradient>
+    <linearGradient id="rust" x2="1" y2="1"><stop stop-color="#c8774f"/><stop offset="1" stop-color="#934934"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".58" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="900" height="680" fill="url(#paper)"/>
+  <path d="M0 0h463c-59 84-77 166-88 271-9 83-20 207-105 409H0Z" fill="#203943"/>
+  <path d="M0 454c104-48 202-66 282-63 34 2 71 7 91 19-22 116-45 188-70 270H0Z" fill="#36515a"/>
+  <path d="M379 0h521v680H421c59-115 100-224 128-333 30-116 30-246-170-347Z" fill="#eadcc6"/>
+  <path d="M620 50c91-12 181 42 211 130 33 97-9 214-78 281-69 67-173 65-233-13-49-65-66-164-40-247 28-90 74-141 140-151Z" fill="url(#rust)"/>
+  <path d="M617 63c88-9 167 49 189 139 24 98-13 180-71 242" fill="none" stroke="#df9a6d" stroke-width="4" opacity=".7"/>
+  <path d="M0 0h179c29 38 42 92 32 140-14 67-52 95-107 147C72 317 29 365 0 424Z" fill="#28434c"/>
+  <path d="M412 0c57 57 85 139 88 211 3 90-23 183-70 278-35 72-71 125-103 191" fill="none" stroke="#ae7459" stroke-width="20" opacity=".84"/>
+  <path d="M493 0c57 68 80 147 74 224-6 85-43 160-78 233" fill="none" stroke="#f6e9d2" stroke-width="8" opacity=".55"/>
+  <path d="M52 80c36 6 80 0 118-24M29 121c56 4 113-8 168-31M85 495c48-25 111-34 175-23M63 534c59-23 123-28 180-15" fill="none" stroke="#78908a" stroke-width="3" opacity=".55"/>
+  <path d="M659 507c52 14 108 12 161-10M613 537c70 24 156 25 235-4" fill="none" stroke="#ae6c51" stroke-width="3" opacity=".7"/>
+  <circle cx="148" cy="316" r="16" fill="#d4a47d"/>
+  <rect width="900" height="680" filter="url(#grain)" opacity=".55"/>
+  <rect x="3" y="3" width="894" height="674" fill="none" stroke="#6c5e4f" stroke-opacity=".18" stroke-width="6"/>
+</svg>
