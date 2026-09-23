@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-3" />
-    <script src="./script.js?v=sv-3" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-4" />
+    <script src="./script.js?v=sv-5" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -47,12 +47,16 @@
 
         <main id="main">
           <section class="gallery-section" id="gallery" aria-label="Galleri">
-            <p class="sr-only" id="gallery-instructions">Svep åt vänster eller höger för att byta målning. Med tangentbord använder du vänster och höger piltangent.</p>
+            <p class="sr-only" id="gallery-instructions">Dra eller svep åt vänster eller höger för att byta målning. Med tangentbord använder du vänster och höger piltangent.</p>
             <div class="slideshow" role="region" aria-roledescription="bildspel" aria-label="Målningsgalleri" aria-describedby="gallery-instructions" tabindex="0">
               <div class="artwork-stage">
                 <span class="stage-corner stage-corner-top" aria-hidden="true"></span>
                 <div class="painting-wrap">
-                  <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått" width="900" height="680" draggable="false" />
+                  <div class="painting-track" id="painting-track">
+                    <img class="painting" src="./assets/painting-04.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
+                    <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått" width="900" height="680" draggable="false" />
+                    <img class="painting" src="./assets/painting-02.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
+                  </div>
                 </div>
                 <span class="stage-corner stage-corner-bottom" aria-hidden="true"></span>
                 <span class="stage-label">MÅLNINGAR <span aria-hidden="true">/</span> 2026</span>
