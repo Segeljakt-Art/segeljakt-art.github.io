@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f6f3ed" />
-    <meta name="description" content="A gallery website for Andreas Segeljakt. Explore the painting slideshow and find information about the artist." />
+    <meta name="description" content="Konstgalleri för Andreas Segeljakt. Upptäck målningarna och läs om konstnären." />
     <title>Segeljakt art — Andreas Segeljakt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,25 +13,25 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">Hoppa till innehållet</a>
 
     <div class="site-shell">
-      <aside class="sidebar" aria-label="Site navigation">
-        <a class="sidebar-brand" href="#top" aria-label="Andreas Segeljakt, back to top">AS<span class="brand-dot">.</span></a>
+      <aside class="sidebar" aria-label="Sidnavigation">
+        <a class="sidebar-brand" href="#top" aria-label="Andreas Segeljakt, tillbaka till början">AS<span class="brand-dot">.</span></a>
 
         <div class="sidebar-inner">
-          <p class="sidebar-label">EXPLORE</p>
-          <nav class="site-nav" aria-label="Main navigation">
-            <a class="nav-link is-active" href="#gallery" aria-current="location"><span class="nav-number">01</span><span>Gallery</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
-            <a class="nav-link" href="#about"><span class="nav-number">02</span><span>About</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
-            <a class="nav-link" href="#contact"><span class="nav-number">03</span><span>Contact</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
-            <a class="nav-link" href="#calendar"><span class="nav-number">04</span><span>Calendar</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+          <p class="sidebar-label">UTFORSKA</p>
+          <nav class="site-nav" aria-label="Huvudmeny">
+            <a class="nav-link is-active" href="#gallery" aria-current="location"><span class="nav-number">01</span><span>Galleri</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+            <a class="nav-link" href="#about"><span class="nav-number">02</span><span>Om</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+            <a class="nav-link" href="#contact"><span class="nav-number">03</span><span>Kontakt</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+            <a class="nav-link" href="#calendar"><span class="nav-number">04</span><span>Kalender</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
           </nav>
         </div>
 
         <div class="sidebar-footer">
           <span class="sidebar-rule"></span>
-          <p>AN ONLINE SPACE<br />FOR ART &amp; DISCOVERY</p>
+          <p>EN PLATS FÖR<br />KONST &amp; NYFIKENHET</p>
           <span class="sidebar-year">© <span id="year">2026</span></span>
         </div>
       </aside>
@@ -39,77 +39,73 @@
       <div class="page-content" id="top">
         <header class="site-header">
           <div>
-            <p class="eyebrow header-eyebrow">ANDREAS SEGELJAKT / ARTIST</p>
+            <p class="eyebrow header-eyebrow">ANDREAS SEGELJAKT / KONSTNÄR</p>
             <a href="#top" class="artist-name">Segeljakt <em>art</em><span class="name-period">.</span></a>
           </div>
-          <div class="header-note"><span class="header-note-line"></span><span>ARTIST PORTFOLIO<br />PAINTINGS &amp; MORE</span></div>
+          <div class="header-note"><span class="header-note-line"></span><span>KONSTGALLERI<br />MÅLERI &amp; MER</span></div>
         </header>
 
         <main id="main">
           <section class="gallery-section" id="gallery" aria-labelledby="gallery-heading">
             <div class="section-intro">
               <div>
-                <p class="eyebrow"><span class="little-star" aria-hidden="true">✳</span> SELECTED WORK</p>
-                <h1 id="gallery-heading">A place for <em>art</em> to live.</h1>
+                <p class="eyebrow"><span class="little-star" aria-hidden="true">✳</span> UTVALDA VERK</p>
+                <h1 id="gallery-heading">En plats för <em>konst.</em></h1>
               </div>
-              <p class="intro-copy">A quiet space to explore the paintings of Andreas Segeljakt. Original works will be added here soon.</p>
+              <p class="intro-copy">Här kan du upptäcka Andreas Segeljakts målningar. Originalverk läggs till snart.</p>
             </div>
 
-            <div class="slideshow" aria-roledescription="carousel" aria-label="Painting gallery">
+            <p class="sr-only" id="gallery-instructions">Svep åt vänster eller höger för att byta målning. Med tangentbord använder du vänster och höger piltangent.</p>
+            <div class="slideshow" role="region" aria-roledescription="bildspel" aria-label="Målningsgalleri" aria-describedby="gallery-instructions" tabindex="0">
               <div class="artwork-stage">
                 <span class="stage-corner stage-corner-top" aria-hidden="true"></span>
                 <div class="painting-wrap">
-                  <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Sample abstract painting in terracotta, cream and dark blue; placeholder artwork" width="900" height="680" draggable="false" />
+                  <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått" width="900" height="680" draggable="false" />
                 </div>
                 <span class="stage-corner stage-corner-bottom" aria-hidden="true"></span>
-                <span class="stage-label">PAINTING GALLERY <span aria-hidden="true">/</span> 2026</span>
+                <span class="stage-label">MÅLNINGAR <span aria-hidden="true">/</span> 2026</span>
               </div>
 
               <div class="slideshow-footer">
                 <div class="artwork-details" aria-live="polite" aria-atomic="true">
                   <span class="artwork-index" id="slide-index">01 / 04</span>
                   <div>
-                    <h2 id="slide-title">Artwork placeholder 01</h2>
-                    <p id="slide-description">Sample artwork · Original painting to be added</p>
+                    <h2 id="slide-title">Exempelbild 01</h2>
+                    <p id="slide-description">Tillfällig bild · Originalmålning kommer snart</p>
                   </div>
                 </div>
-                <div class="slideshow-controls">
-                  <button class="play-toggle" id="play-toggle" type="button" aria-label="Pause slideshow" aria-pressed="false"><span id="play-icon" aria-hidden="true">Ⅱ</span></button>
-                  <button class="arrow-button" id="previous" type="button" aria-label="Previous painting"><span aria-hidden="true">←</span></button>
-                  <button class="arrow-button" id="next" type="button" aria-label="Next painting"><span aria-hidden="true">→</span></button>
-                </div>
+                <span class="gesture-hint">DRA I SIDLED</span>
               </div>
-              <div class="slide-progress" id="slide-dots" aria-label="Choose a painting"></div>
             </div>
-            <div class="gallery-bottom"><span class="desktop-scroll-hint">SCROLL TO DISCOVER MORE</span><span class="mobile-swipe-hint">SWIPE TO VIEW PAINTINGS</span><span aria-hidden="true">↓</span></div>
+            <div class="gallery-bottom"><span class="desktop-scroll-hint">FORTSÄTT NEDÅT FÖR ATT LÄSA MER</span><span class="mobile-swipe-hint">SVEP I SIDLED FÖR FLER MÅLNINGAR</span></div>
           </section>
 
           <section class="content-section about-section" id="about" aria-labelledby="about-heading">
-            <p class="eyebrow">02 / THE ARTIST</p>
+            <p class="eyebrow">02 / KONSTNÄREN</p>
             <div class="content-grid">
-              <h2 id="about-heading">Behind the <em>canvas.</em></h2>
-              <div class="content-copy"><p>This space is reserved for Andreas’s story: the ideas, materials, and places behind the work.</p><p>When the artist biography and original paintings are ready, they can be added here.</p></div>
+              <h2 id="about-heading">Om <em>konstnären.</em></h2>
+              <div class="content-copy"><p>Här kommer Andreas att berätta om sin konst, sina idéer och arbetet bakom målningarna.</p><p>Biografi och originalverk läggs till när de finns tillgängliga.</p></div>
             </div>
           </section>
 
           <section class="content-section contact-section" id="contact" aria-labelledby="contact-heading">
-            <p class="eyebrow">03 / GET IN TOUCH</p>
+            <p class="eyebrow">03 / KONTAKT</p>
             <div class="content-grid">
-              <h2 id="contact-heading">Let’s start a <em>conversation.</em></h2>
-              <div class="content-copy"><p>For questions about the work, exhibitions, or collaborations, contact details can be added here.</p><p class="coming-soon">CONTACT INFORMATION COMING SOON <span aria-hidden="true">↗</span></p></div>
+              <h2 id="contact-heading">Hör av <em>dig.</em></h2>
+              <div class="content-copy"><p>Kontaktuppgifter för frågor om verk, utställningar och samarbeten kommer att finnas här.</p><p class="coming-soon">KONTAKTUPPGIFTER KOMMER SNART</p></div>
             </div>
           </section>
 
           <section class="content-section calendar-section" id="calendar" aria-labelledby="calendar-heading">
-            <p class="eyebrow">04 / WHAT'S ON</p>
+            <p class="eyebrow">04 / KALENDER</p>
             <div class="content-grid">
-              <h2 id="calendar-heading">Upcoming <em>events.</em></h2>
-              <div class="content-copy"><p>Future exhibitions and events will appear here.</p><div class="event-placeholder"><span>NO EVENTS ANNOUNCED YET</span><span aria-hidden="true">✳</span></div></div>
+              <h2 id="calendar-heading">Kommande <em>händelser.</em></h2>
+              <div class="content-copy"><p>Utställningar och andra evenemang visas här när de är aktuella.</p><div class="event-placeholder"><span>INGA EVENEMANG ÄR PUBLICERADE ÄN</span><span aria-hidden="true">✳</span></div></div>
             </div>
           </section>
         </main>
 
-        <footer class="site-footer"><span>ANDREAS SEGELJAKT</span><a href="#top">BACK TO TOP ↑</a><span>ART GALLERY © <span id="footer-year">2026</span></span></footer>
+        <footer class="site-footer"><span>ANDREAS SEGELJAKT</span><a href="#top">TILLBAKA TILL BÖRJAN</a><span>KONSTGALLERI © <span id="footer-year">2026</span></span></footer>
       </div>
     </div>
   </body>

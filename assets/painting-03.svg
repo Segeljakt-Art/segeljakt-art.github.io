@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" role="img" aria-labelledby="title">
-  <title id="title">Abstract sample artwork with blue waves</title>
+  <title id="title">Tillfällig abstrakt bild med blå vågor</title>
   <defs>
     <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#cdd4c9"/><stop offset="1" stop-color="#e5d6bc"/></linearGradient>
     <linearGradient id="sea" x2=".2" y2="1"><stop stop-color="#496d80"/><stop offset="1" stop-color="#172f45"/></linearGradient>

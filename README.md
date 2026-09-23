@@ -1,13 +1,15 @@
 # Segeljakt art — Andreas Segeljakt
 
-A responsive, single-page art gallery based on the supplied sketch. The sidebar links to the gallery, artist information, contact area, and calendar. The central painting slideshow includes four clearly labeled sample artworks. On phones, the sidebar switches sections within one screen, and visitors can swipe left or right across the painting to move through the slideshow.
+Ett responsivt konstgalleri utifrån den inskickade skissen. Menyn till vänster leder till galleri, information om konstnären, kontakt och kalender. På mobil byts innehållet på samma skärm utan lodrät rullning.
 
-## Preview locally
+Bildspelet innehåller fyra tydligt märkta exempelbilder. Svep åt sidan på telefonen eller dra målningen med musen på datorn för att byta bild. Vänster och höger piltangent fungerar också när bildspelet har fokus.
 
-Open `index.html` in a browser, or run `python3 -m http.server 8000` from this folder and visit `http://localhost:8000`.
+## Förhandsvisa lokalt
 
-## Replace the sample paintings
+Öppna `index.html` i en webbläsare, eller kör `python3 -m http.server 8000` i den här mappen och besök `http://localhost:8000`.
 
-Put the real painting images in `assets/`, then update each image path, title, and alt text in `script.js`. Update the introductory, artist, contact, and event copy in `index.html` when those details are available.
+## Byt ut exempelbilderna
 
-The site is plain HTML, CSS, and JavaScript and can be published directly from the root of the repository with GitHub Pages.
+Lägg originalmålningarna i `assets/` och uppdatera bildsökväg, titel och alternativtext i `script.js`. Ersätt texterna i `index.html` när biografi, kontaktuppgifter och evenemang finns.
+
+Webbplatsen använder vanlig HTML, CSS och JavaScript och publiceras från arkivets rot med GitHub Pages.
