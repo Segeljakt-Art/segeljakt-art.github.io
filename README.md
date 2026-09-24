@@ -4,9 +4,11 @@ Webbplatsen publiceras från `main` med GitHub Pages. Museet skapas automatiskt 
 
 ## Ladda upp från Windows
 
-Installera [Git for Windows](https://git-scm.com/download/win) en gång. Klona sedan webbplatsen med `git clone https://github.com/Segeljakt-Art/segeljakt-art.github.io.git` i en mapp på datorn. Dubbelklicka på **Ladda upp målning.bat** i den mappen. Välj en bild och fyll i titel, år, målningsnummer, pris, medium, dimensioner och upphovsrätt. Tryck Enter för att använda det visade standardvärdet. Skriptet hämtar senaste versionen, kopierar bilden, uppdaterar JSON-filen och publicerar ändringen. Första uppladdningen kan öppna en inloggning i webbläsaren via Git Credential Manager; kontot behöver skrivrätt till projektet.
+Installera [Git for Windows](https://git-scm.com/download/win) och [Python 3 för Windows](https://www.python.org/downloads/windows/) en gång. Se till att Python-kommandon och Tcl/Tk installeras. Klona sedan webbplatsen med `git clone https://github.com/Segeljakt-Art/segeljakt-art.github.io.git` i en mapp på datorn.
 
-Nya bilder visas automatiskt i Museum när GitHub Pages är färdigt. Bildspelet på startsidan styrs separat i `script.js`. Om uppladdningen misslyckas efter att en commit har skapats sparas den lokalt; kör `git push origin main` när problemet är löst. Skriptet skriver inte över en bild med samma filnamn.
+Dubbelklicka på **Ladda upp målning.cmd** i den klonade mappen. Programmet öppnar ett fönster där du väljer bild och fyller i titel, år, målningsnummer, pris, medium, dimensioner och upphovsrätt. Alla fält visas med standardvärden. Klicka på **Ladda upp målning**. Programmet hämtar senaste versionen, kopierar bilden, uppdaterar JSON-filen och publicerar ändringen. Första uppladdningen kan öppna en GitHub-inloggning i webbläsaren via Git Credential Manager; kontot behöver skrivrätt till projektet.
+
+Nya bilder visas automatiskt i Museum när GitHub Pages är färdigt. Bildspelet på startsidan styrs separat i `script.js`. Programmet skriver inte över en bild med samma filnamn. Om en commit skapades men uppladdningen misslyckades, kör `git push origin main` när problemet är löst.
 
 ## Lägg till en målning
 
