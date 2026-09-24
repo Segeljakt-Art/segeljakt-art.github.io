@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-7" />
-    <script src="./script.js?v=sv-6" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-9" />
+    <script src="./script.js?v=sv-7" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -104,21 +104,27 @@ SIDBAREN
             </div>
           </section>
           <section class="content-section museum-section" id="museum" aria-labelledby="museum-heading">
-            <p class="eyebrow">05 / MUSEUM</p>
-            <h2 id="museum-heading">Museum<span class="name-period">.</span></h2>
-            <p class="museum-intro">Bläddra bland verk och bilder.</p>
+            <h2 class="sr-only" id="museum-heading">Museum</h2>
             <div class="museum-gallery">
               <div class="scroll-container" id="museum-scroll" role="region" aria-label="Bilder i museet" tabindex="0">
-                <figure><img src="./assets/Picassos-Drömlandskap.jpg" alt="Picassos Drömlandskap" loading="lazy" /><figcaption>Picassos Drömlandskap</figcaption></figure>
-                <figure><img src="./assets/Picassos-Mysfilt.svg" alt="Picassos Mysfilt" loading="lazy" /><figcaption>Picassos Mysfilt</figcaption></figure>
-                <figure><img src="./assets/painting-05.svg" alt="Exempelbild 05" loading="lazy" /><figcaption>Exempelbild 05</figcaption></figure>
-                <figure><img src="./assets/painting-04.svg" alt="Exempelbild 04" loading="lazy" /><figcaption>Exempelbild 04</figcaption></figure>
-                <figure><img src="./assets/painting-03.svg" alt="Exempelbild 03" loading="lazy" /><figcaption>Exempelbild 03</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Picassos Drömlandskap större"><img src="./assets/Picassos-Drömlandskap.jpg" alt="Picassos Drömlandskap" loading="lazy" /></button><figcaption>Picassos Drömlandskap</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Picassos Mysfilt större"><img src="./assets/Picassos-Mysfilt.svg" alt="Picassos Mysfilt" loading="lazy" /></button><figcaption>Picassos Mysfilt</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Exempelbild 01 större"><img src="./assets/painting-01.svg" alt="Exempelbild 01" loading="lazy" /></button><figcaption>Exempelbild 01</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Exempelbild 02 större"><img src="./assets/painting-02.svg" alt="Exempelbild 02" loading="lazy" /></button><figcaption>Exempelbild 02</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Exempelbild 03 större"><img src="./assets/painting-03.svg" alt="Exempelbild 03" loading="lazy" /></button><figcaption>Exempelbild 03</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Exempelbild 04 större"><img src="./assets/painting-04.svg" alt="Exempelbild 04" loading="lazy" /></button><figcaption>Exempelbild 04</figcaption></figure>
+                <figure><button class="museum-image-button" type="button" aria-label="Visa Exempelbild 05 större"><img src="./assets/painting-05.svg" alt="Exempelbild 05" loading="lazy" /></button><figcaption>Exempelbild 05</figcaption></figure>
               </div>
             </div>
           </section>
 
         </main>
+
+        <dialog class="artwork-dialog" id="artwork-dialog" aria-labelledby="artwork-dialog-title">
+          <button class="dialog-close" id="dialog-close" type="button" aria-label="Stäng bild">×</button>
+          <img id="artwork-dialog-image" alt="" />
+          <p id="artwork-dialog-title"></p>
+        </dialog>
 
         <footer class="site-footer"><span>ANDREAS SEGELJAKT</span><a href="#top">TILLBAKA TILL BÖRJAN</a><span>KONSTGALLERI © <span id="footer-year">2026</span></span></footer>
       </div>

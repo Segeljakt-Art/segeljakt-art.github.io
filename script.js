@@ -144,6 +144,27 @@ swipeArea.addEventListener("pointercancel", event => {
 document.addEventListener("visibilitychange", scheduleAuto);
 reducedMotion.addEventListener("change", scheduleAuto);
 
+const museumScroll = document.querySelector("#museum-scroll");
+const artworkDialog = document.querySelector("#artwork-dialog");
+const artworkDialogImage = document.querySelector("#artwork-dialog-image");
+const artworkDialogTitle = document.querySelector("#artwork-dialog-title");
+const dialogClose = document.querySelector("#dialog-close");
+let lastMuseumTrigger;
+
+museumScroll.addEventListener("click", event => {
+  const trigger = event.target.closest(".museum-image-button");
+  if (!trigger) return;
+  const artwork = trigger.querySelector("img");
+  artworkDialogImage.src = artwork.getAttribute("src");
+  artworkDialogImage.alt = artwork.alt;
+  artworkDialogTitle.textContent = trigger.parentElement.querySelector("figcaption").textContent;
+  lastMuseumTrigger = trigger;
+  artworkDialog.showModal();
+});
+
+dialogClose.addEventListener("click", () => artworkDialog.close());
+artworkDialog.addEventListener("close", () => lastMuseumTrigger?.focus());
+
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = navLinks.map(link => document.querySelector(link.getAttribute("href")));
 
