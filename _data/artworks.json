@@ -1,55 +1,64 @@
 {
-  "_defaults": {
-    "year": "Ej angivet",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "Ej angivet",
-    "price": "Ej angivet",
-    "medium": "Ej angivet",
-    "dimensions": "Ej angivet"
-  },
-  "Picassos-Drömlandskap.jpg": {
-    "title": "Picassos Drömlandskap",
-    "year": "2026",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "10",
-    "price": "Ej angivet",
-    "medium": "Ej angivet",
-    "dimensions": "Ej angivet"
-  },
-  "Bergsleden.jpg": {
-    "title": "Test",
-    "year": "2026",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "Olja",
-    "price": "10000",
-    "medium": "Ej angivet",
-    "dimensions": "Ej angivet"
-  },
-    "Bergstunnel.jpg": {
-    "title": "Test",
-    "year": "2026",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "Olja",
-    "price": "12000",
-    "medium": "Ej angivet",
-    "dimensions": "Ej angivet"
-  },
-  "Picassos-Mysfilt.svg": {
-    "title": "Picassos Mysfilt",
-    "year": "Ej angivet",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "Ej angivet",
-    "price": "Ej angivet",
-    "medium": "Ej angivet",
-    "dimensions": "Ej angivet"
-  },
-  "stillhet-vid-vattnet-2026.png": {
-    "title": "Stillhet vid vattnet",
-    "year": "2026",
-    "copyright": "Andreas Segeljakt",
-    "painting_number": "DIG-01",
-    "price": "Ej till salu",
-    "medium": "Digitalt koncept (AI-genererat)",
-    "dimensions": "1448 × 1086 px"
-  }
+    "_defaults":  {
+                      "year":  "Ej angivet",
+                      "copyright":  "Andreas Segeljakt",
+                      "painting_number":  "Ej angivet",
+                      "price":  "Ej angivet",
+                      "medium":  "Ej angivet",
+                      "dimensions":  "Ej angivet"
+                  },
+    "Picassos-Drömlandskap.jpg":  {
+                                      "title":  "Picassos Drömlandskap",
+                                      "year":  "2026",
+                                      "copyright":  "Andreas Segeljakt",
+                                      "painting_number":  "10",
+                                      "price":  "Ej angivet",
+                                      "medium":  "Ej angivet",
+                                      "dimensions":  "Ej angivet"
+                                  },
+    "Bergsleden.jpg":  {
+                           "title":  "Test",
+                           "year":  "2026",
+                           "copyright":  "Andreas Segeljakt",
+                           "painting_number":  "Olja",
+                           "price":  "10000",
+                           "medium":  "Ej angivet",
+                           "dimensions":  "Ej angivet"
+                       },
+    "Bergstunnel.jpg":  {
+                            "title":  "Test",
+                            "year":  "2026",
+                            "copyright":  "Andreas Segeljakt",
+                            "painting_number":  "Olja",
+                            "price":  "12000",
+                            "medium":  "Ej angivet",
+                            "dimensions":  "Ej angivet"
+                        },
+    "Picassos-Mysfilt.svg":  {
+                                 "title":  "Picassos Mysfilt",
+                                 "year":  "Ej angivet",
+                                 "copyright":  "Andreas Segeljakt",
+                                 "painting_number":  "Ej angivet",
+                                 "price":  "Ej angivet",
+                                 "medium":  "Ej angivet",
+                                 "dimensions":  "Ej angivet"
+                             },
+    "stillhet-vid-vattnet-2026.png":  {
+                                          "title":  "Stillhet vid vattnet",
+                                          "year":  "2026",
+                                          "copyright":  "Andreas Segeljakt",
+                                          "painting_number":  "DIG-01",
+                                          "price":  "Ej till salu",
+                                          "medium":  "Digitalt koncept (AI-genererat)",
+                                          "dimensions":  "1448 × 1086 px"
+                                      },
+    "MonaElvisPresley.jpg":  {
+                                 "title":  "MonaElvisPresley",
+                                 "year":  "2026",
+                                 "copyright":  "Andreas Segeljakt",
+                                 "painting_number":  "1",
+                                 "price":  "7500 kr",
+                                 "medium":  "Olja",
+                                 "dimensions":  "50*70 cm"
+                             }
 }
