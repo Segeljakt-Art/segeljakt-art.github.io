@@ -1,34 +1,11 @@
 const slides = [
-  {
-    image: "./assets/painting-01.svg",
-    alt: "Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått",
-    title: "Exempelbild 01"
-  },
-  {
-    image: "./assets/painting-02.svg",
-    alt: "Tillfällig abstrakt bild med olivgröna växtformer",
-    title: "Exempelbild 02"
-  },
-  {
-    image: "./assets/painting-03.svg",
-    alt: "Tillfällig abstrakt bild med blå vågor och en blek sol",
-    title: "Exempelbild 03"
-  },
-  {
-    image: "./assets/painting-04.svg",
-    alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
-    title: "Exempelbild 04"
-  },
-  {
-    image: "./assets/painting-05.svg",
-    alt: "Exempelbild 05",
-    title: "Exempelbild 05"
-  },
-  {
-    image: "./assets/Picassos-Drömlandskap.jpg",
-    alt: "Picassos Drömlandskap",
-    title: "Picassos Drömlandskap"
-  }
+  { image: "./assets/Picassos-Drömlandskap.jpg", alt: "Picassos Drömlandskap", title: "Picassos Drömlandskap" },
+  { image: "./assets/Picassos-Mysfilt.svg", alt: "Picassos Mysfilt", title: "Picassos Mysfilt" },
+  { image: "./assets/Bergsleden.jpg", alt: "Bergsleden", title: "Bergsleden" },
+  { image: "./assets/Bergstunnel.jpg", alt: "Bergstunnel", title: "Bergstunnel" },
+  { image: "./assets/Picassos Abstrakta Mystism.jpg", alt: "Picassos Abstrakta Mystism", title: "Picassos Abstrakta Mystism" },
+  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Picassos Abstrakta Mystism 2", title: "Picassos Abstrakta Mystism 2" },
+  { image: "./assets/stillhet-vid-vattnet-2026.png", alt: "Stillhet vid vattnet", title: "Stillhet vid vattnet" }
 ];
 
 const track = document.querySelector("#painting-track");
@@ -166,6 +143,13 @@ museumScroll.addEventListener("click", event => {
 });
 
 dialogClose.addEventListener("click", () => artworkDialog.close());
+artworkDialog.addEventListener("click", event => {
+  const bounds = artworkDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom) {
+    artworkDialog.close();
+  }
+});
 artworkDialog.addEventListener("close", () => lastMuseumTrigger?.focus());
 
 const navLinks = [...document.querySelectorAll(".nav-link")];

@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-10" />
-    <script src="./script.js?v=sv-8" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-11" />
+    <script src="./script.js?v=sv-9" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -60,8 +60,8 @@ SIDBAREN
                 <div class="painting-wrap">
                   <div class="painting-track" id="painting-track">
                     <img class="painting" src="./assets/Picassos-Drömlandskap.jpg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
-                    <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått" width="900" height="680" draggable="false" />
-                    <img class="painting" src="./assets/painting-02.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
+                    <img id="slide-image" class="painting" src="./assets/Picassos-Drömlandskap.jpg" alt="Picassos Drömlandskap" width="900" height="680" draggable="false" />
+                    <img class="painting" src="./assets/Picassos-Mysfilt.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
                   </div>
                 </div>
                 <span class="stage-corner stage-corner-bottom" aria-hidden="true"></span>
@@ -70,10 +70,10 @@ SIDBAREN
 
               <div class="slideshow-footer">
                 <div class="artwork-details" aria-live="polite" aria-atomic="true">
-                  <span class="artwork-index" id="slide-index">01 / 06</span>
+                  <span class="artwork-index" id="slide-index">01 / 07</span>
                   <div>
-                    <h2 id="slide-title">Exempelbild 01</h2>
-                    <p id="slide-description">Tillfällig bild · Originalmålning kommer snart</p>
+                    <h2 id="slide-title">Picassos Drömlandskap</h2>
+                    <p id="slide-description">Picassos Drömlandskap</p>
                     <p class="slide-copyright">© Andreas Segeljakt</p>
                   </div>
                 </div>
@@ -125,11 +125,11 @@ SIDBAREN
                         </button>
                         <figcaption>
                           <strong class="artwork-title">{{ artwork_title | escape }}</strong>
-                          <span class="artwork-meta">År: {{ info.year | default: artwork_defaults.year | escape }}</span>
-                          <span class="artwork-meta">Medium: {{ info.medium | default: artwork_defaults.medium | escape }}</span>
-                          <span class="artwork-meta">Dimensioner: {{ info.dimensions | default: artwork_defaults.dimensions | escape }}</span>
-                          <span class="artwork-meta">Målningsnummer: {{ info.painting_number | default: artwork_defaults.painting_number | escape }}</span>
-                          <span class="artwork-meta">Pris: {{ info.price | default: artwork_defaults.price | escape }}</span>
+                          <span class="artwork-meta"><strong>År:</strong> {{ info.year | default: artwork_defaults.year | escape }}</span>
+                          <span class="artwork-meta"><strong>Medium:</strong> {{ info.medium | default: artwork_defaults.medium | escape }}</span>
+                          <span class="artwork-meta"><strong>Dimensioner:</strong> {{ info.dimensions | default: artwork_defaults.dimensions | escape }}</span>
+                          <span class="artwork-meta"><strong>Målningsnummer:</strong> {{ info.painting_number | default: artwork_defaults.painting_number | escape }}</span>
+                          <span class="artwork-meta"><strong>Pris:</strong> {{ info.price | default: artwork_defaults.price | escape }}</span>
                           <span class="artwork-meta">© {{ info.copyright | default: artwork_defaults.copyright | escape }}</span>
                         </figcaption>
                       </figure>
