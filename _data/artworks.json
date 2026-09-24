@@ -1,0 +1,82 @@
+{
+  "_defaults": {
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos-Drömlandskap.jpg": {
+    "title": "Picassos Drömlandskap",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos-Mysfilt.svg": {
+    "title": "Picassos Mysfilt",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "painting-01.svg": {
+    "title": "Exempelbild 01",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "painting-02.svg": {
+    "title": "Exempelbild 02",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "painting-03.svg": {
+    "title": "Exempelbild 03",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "painting-04.svg": {
+    "title": "Exempelbild 04",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "painting-05.svg": {
+    "title": "Exempelbild 05",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "stillhet-vid-vattnet-2026.png": {
+    "title": "Stillhet vid vattnet",
+    "year": "2026",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "DIG-01",
+    "price": "Ej till salu",
+    "medium": "Digitalt koncept (AI-genererat)",
+    "dimensions": "1448 × 1086 px"
+  }
+}

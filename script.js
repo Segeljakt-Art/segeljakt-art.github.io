@@ -148,6 +148,7 @@ const museumScroll = document.querySelector("#museum-scroll");
 const artworkDialog = document.querySelector("#artwork-dialog");
 const artworkDialogImage = document.querySelector("#artwork-dialog-image");
 const artworkDialogTitle = document.querySelector("#artwork-dialog-title");
+const artworkDialogMeta = document.querySelector("#artwork-dialog-meta");
 const dialogClose = document.querySelector("#dialog-close");
 let lastMuseumTrigger;
 
@@ -155,9 +156,11 @@ museumScroll.addEventListener("click", event => {
   const trigger = event.target.closest(".museum-image-button");
   if (!trigger) return;
   const artwork = trigger.querySelector("img");
+  const caption = trigger.parentElement.querySelector("figcaption");
   artworkDialogImage.src = artwork.getAttribute("src");
   artworkDialogImage.alt = artwork.alt;
-  artworkDialogTitle.textContent = trigger.parentElement.querySelector("figcaption").textContent;
+  artworkDialogTitle.textContent = caption.querySelector(".artwork-title").textContent;
+  artworkDialogMeta.replaceChildren(...[...caption.querySelectorAll(".artwork-meta")].map(line => line.cloneNode(true)));
   lastMuseumTrigger = trigger;
   artworkDialog.showModal();
 });

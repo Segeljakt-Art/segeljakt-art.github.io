@@ -72,6 +72,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .artwork-index { min-width: 47px; padding-top: 5px; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .artwork-details h2 { margin: 0 0 4px; font-family: "Italiana", Georgia, serif; font-size: 25px; font-weight: 400; }
 .artwork-details p { margin: 0; color: var(--muted); font-size: 11px; }
+.artwork-details .slide-copyright { margin-top: 3px; font-size: 9px; }
 .gesture-hint { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .16em; white-space: nowrap; }
 .gallery-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 25px; color: var(--muted); font-size: 9px; }
 .mobile-swipe-hint { display: none; }
@@ -94,12 +95,16 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .scroll-container figure { min-width: 0; margin: 0; padding: 6px; border: 1px solid var(--line); background: #faf8f3; }
 .museum-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .scroll-container img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--paper-deep); }
-.scroll-container figcaption { padding: 8px 2px 2px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+.scroll-container figcaption { padding: 8px 2px 2px; color: var(--muted); font-size: 10px; line-height: 1.35; }
+.artwork-title { display: block; margin-bottom: 5px; color: var(--ink); font-size: 11px; font-weight: 600; }
+.artwork-meta { display: block; }
 .artwork-dialog { position: fixed; inset: 0; width: min(92vw, 1100px); height: min(92dvh, 850px); max-width: none; max-height: none; margin: auto; padding: 52px 30px 20px; border: 1px solid var(--line); background: var(--paper); box-shadow: 0 24px 80px rgba(25, 26, 22, .25); }
 .artwork-dialog[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; }
 .artwork-dialog::backdrop { background: rgba(24, 27, 24, .78); }
 .artwork-dialog img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: contain; }
-.artwork-dialog p { flex: none; margin: 0; color: var(--ink); font-family: "Italiana", Georgia, serif; font-size: 22px; text-align: center; }
+.artwork-dialog-info { flex: none; max-width: 100%; text-align: center; }
+.artwork-dialog p { margin: 0 0 7px; color: var(--ink); font-family: "Italiana", Georgia, serif; font-size: 22px; }
+.artwork-dialog-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px 14px; color: var(--muted); font-size: 10px; }
 .dialog-close { position: absolute; top: 12px; right: 13px; display: grid; width: 34px; height: 34px; place-items: center; border: 0; background: transparent; color: var(--ink); cursor: pointer; font-size: 29px; line-height: 1; }
 .dialog-close:hover { color: var(--accent); }
 .site-footer { display: flex; justify-content: space-between; gap: 15px; padding: 29px clamp(38px, 6.2vw, 100px); border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; }
@@ -187,6 +192,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .artwork-index { min-width: 38px; font-size: 8px; }
   .artwork-details h2 { font-size: 17px; }
   .artwork-details p { display: none; }
+  .artwork-details .slide-copyright { display: block; }
   .gesture-hint { display: none; }
   .gallery-bottom { display: flex; margin-top: 8px; }
   .desktop-scroll-hint { display: none; }
@@ -197,10 +203,15 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .content-copy { font-size: 13px; line-height: 1.6; }
   .scroll-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
   .scroll-container figcaption { font-size: 10px; }
+  .artwork-title { font-size: 11px; }
   .artwork-dialog { width: calc(100vw - 20px); height: calc(100dvh - 20px); padding: 50px 12px 16px; }
   .artwork-dialog p { font-size: 18px; }
+  .artwork-dialog-meta { font-size: 9px; }
   .coming-soon { min-width: 0; width: 100%; }
   .site-footer { display: none; }
+}
+@media (max-width: 360px) {
+  .scroll-container { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) and (max-height: 650px) {
   .sidebar-inner { margin-top: 25px; }
