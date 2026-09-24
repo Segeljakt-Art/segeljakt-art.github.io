@@ -1,108 +1,4 @@
-<!--
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollbart bildgalleri</title>
-    <style>
-        /* Behållaren som skapar själva scrollbaren */
-        .scroll-container {
-            display: flex;          /* Lägger bilderna på en rad */
-            overflow-x: auto;       /* Aktiverar horisontell scroll när det behövs */
-            white-space: nowrap;    /* Förhindrar att bilderna hoppar ner på nästa rad */
-            gap: 15px;              /* Mellanrum mellan bilderna */
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-        }
-
-        /* Inställningar för bilderna */
-        .scroll-container img {
-            width: 300px;           /* Bestämmer bredden på bilderna */
-            height: 200px;          /* Bestämmer höjden på bilderna */
-            object-fit: cover;      /* Gör så att bilden inte blir utdragen/deformerad */
-            border-radius: 4px;
-            flex-shrink: 0;         /* Förhindrar att bilderna krymper för att få plats */
-        }
-
-        /* Snyggare scrollbar för Chrome, Edge och Safari (valfritt) */
-        .scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
-</head>
-
-
-    <div class="container">
-  <img src="./assets/Picassos-Drömlandskap.jpg" alt="Beskrivning av bilden" aria-hidden="true" width="300" draggable="false">
-  <p>Här är texten som hamnar till höger om bilden.</p>
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-</div>
--->
-
-
-
-    /* HUVUDPROGRAM */
-    
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollbart bildgalleri</title>
-    <style>
-        /* Behållaren som skapar själva scrollbaren */
-        .scroll-container {
-            display: flex;          /* Lägger bilderna på en rad */
-            overflow-x: auto;       /* Aktiverar horisontell scroll när det behövs */
-            white-space: nowrap;    /* Förhindrar att bilderna hoppar ner på nästa rad */
-            gap: 15px;              /* Mellanrum mellan bilderna */
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-        }
-
-        /* Inställningar för bilderna */
-        .scroll-container img {
-            width: 300px;           /* Bestämmer bredden på bilderna */
-            height: 200px;          /* Bestämmer höjden på bilderna */
-            object-fit: cover;      /* Gör så att bilden inte blir utdragen/deformerad */
-            border-radius: 4px;
-            flex-shrink: 0;         /* Förhindrar att bilderna krymper för att få plats */
-        }
-
-        /* Snyggare scrollbar för Chrome, Edge och Safari (valfritt) */
-        .scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
-</head>
-
-
-  
-/* <!doctype html> */
+<!doctype html>
 <html lang="sv">
   <head>
     <meta charset="utf-8" />
@@ -113,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-6" />
-    <script src="./script.js?v=sv-5" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-7" />
+    <script src="./script.js?v=sv-6" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -161,19 +57,9 @@ SIDBAREN
                 <span class="stage-corner stage-corner-top" aria-hidden="true"></span>
                 <div class="painting-wrap">
                   <div class="painting-track" id="painting-track">
-   <!-- 
-BILDERNA PÅ START 
--->
-                    <img class="painting" src="./assets/painting-04.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
-                    <img class="painting" src="./assets/painting-05.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
-<img class="painting" src="./assets/Picassos-Drömlandskap.jpg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
+                    <img class="painting" src="./assets/Picassos-Drömlandskap.jpg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
                     <img id="slide-image" class="painting" src="./assets/painting-01.svg" alt="Tillfällig abstrakt bild i terrakotta, gräddvitt och mörkblått" width="900" height="680" draggable="false" />
                     <img class="painting" src="./assets/painting-02.svg" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
-                    
-                    
-                  
-
-                  
                   </div>
                 </div>
                 <span class="stage-corner stage-corner-bottom" aria-hidden="true"></span>
@@ -217,36 +103,21 @@ BILDERNA PÅ START
               <div class="content-copy"><p>Utställningar och andra evenemang visas här när de är aktuella.</p><div class="event-placeholder"><span>INGA EVENEMANG ÄR PUBLICERADE ÄN</span><span aria-hidden="true">✳</span></div></div>
             </div>
           </section>
-<!-- 
-MUSEUM
-          <div class="container">
-  <img src="bild.jpg" alt="Beskrivning av bilden">
-  <p>Här är texten som hamnar till höger om bilden.</p>
-</div>
-
-         <section class="content-section museum-section" id="museum" aria-labelledby="contact-heading">
-            <p class="eyebrow">05 / TEST</p>
-            <div class="content-grid">
-              <h2 id="contact-heading">Hej <em>dig.<br></em></h2>
--->              
-              <div class="container">
-  <img src="./assets/Picassos-Drömlandskap.jpg" alt="Beskrivning av bilden" aria-hidden="true" width="300" draggable="false">
-  <p>Här är texten som hamnar till höger om bilden.</p>
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-  <img src="./assets/painting-05.svg" alt="" aria-hidden="true" width="300" draggable="false" >
-</div>
-
-              <!-- <img class="painting" src="./assets/Picassos-Drömlandskap.jpg" alt="" aria-hidden="true" width="900" height="680" draggable="false" /> -->
-              <div class="content-copy"><p>TEST TEST PP</p><p class="coming-soon">KONTAKTUPPGIFTER KOMMER SNART</p></div>
+          <section class="content-section museum-section" id="museum" aria-labelledby="museum-heading">
+            <p class="eyebrow">05 / MUSEUM</p>
+            <h2 id="museum-heading">Museum<span class="name-period">.</span></h2>
+            <p class="museum-intro">Bläddra bland verk och bilder.</p>
+            <div class="museum-gallery">
+              <div class="scroll-container" id="museum-scroll" role="region" aria-label="Bilder i museet" tabindex="0">
+                <figure><img src="./assets/Picassos-Drömlandskap.jpg" alt="Picassos Drömlandskap" loading="lazy" /><figcaption>Picassos Drömlandskap</figcaption></figure>
+                <figure><img src="./assets/Picassos-Mysfilt.svg" alt="Picassos Mysfilt" loading="lazy" /><figcaption>Picassos Mysfilt</figcaption></figure>
+                <figure><img src="./assets/painting-05.svg" alt="Exempelbild 05" loading="lazy" /><figcaption>Exempelbild 05</figcaption></figure>
+                <figure><img src="./assets/painting-04.svg" alt="Exempelbild 04" loading="lazy" /><figcaption>Exempelbild 04</figcaption></figure>
+                <figure><img src="./assets/painting-03.svg" alt="Exempelbild 03" loading="lazy" /><figcaption>Exempelbild 03</figcaption></figure>
+              </div>
             </div>
           </section>
-        
+
         </main>
 
         <footer class="site-footer"><span>ANDREAS SEGELJAKT</span><a href="#top">TILLBAKA TILL BÖRJAN</a><span>KONSTGALLERI © <span id="footer-year">2026</span></span></footer>

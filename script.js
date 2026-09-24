@@ -19,19 +19,16 @@ const slides = [
     alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
     title: "Exempelbild 04"
   },
-   {
+  {
     image: "./assets/painting-05.svg",
-    alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
+    alt: "Exempelbild 05",
     title: "Exempelbild 05"
   },
-    {
+  {
     image: "./assets/Picassos-Drömlandskap.jpg",
-    alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
-    title: "Exempelbild 06"
+    alt: "Picassos Drömlandskap",
+    title: "Picassos Drömlandskap"
   }
-
-
-  
 ];
 
 const track = document.querySelector("#painting-track");

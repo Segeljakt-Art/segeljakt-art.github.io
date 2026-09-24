@@ -85,6 +85,17 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .coming-soon { display: flex; justify-content: space-between; gap: 15px; width: fit-content; min-width: 245px; margin-top: 31px !important; padding-bottom: 10px; border-bottom: 1px solid var(--accent); color: var(--ink); font-size: 10px; line-height: 1.4; }
 .event-placeholder { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 28px; padding: 17px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; }
 .event-placeholder span:last-child { color: var(--accent); font-size: 17px; }
+.museum-section { gap: 0; }
+.museum-section h2 { margin: 12px 0 0; font-family: "Italiana", Georgia, serif; font-size: clamp(42px, 4.5vw, 72px); font-weight: 400; line-height: 1.05; }
+.museum-intro { margin: 10px 0 22px; color: var(--muted); font-size: 13px; }
+.museum-gallery { flex: 1; min-height: 0; }
+.scroll-container { height: 100%; min-height: 0; overflow-y: scroll; overflow-x: hidden; padding: 0 16px 0 0; scrollbar-gutter: stable; scrollbar-color: var(--accent) var(--line); scrollbar-width: thin; }
+.scroll-container::-webkit-scrollbar { width: 8px; }
+.scroll-container::-webkit-scrollbar-track { background: var(--line); }
+.scroll-container::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--accent); }
+.scroll-container figure { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); align-items: center; gap: 24px; min-width: 0; margin: 0 0 20px; padding: 0 0 20px; border-bottom: 1px solid var(--line); }
+.scroll-container img { display: block; width: 100%; height: 215px; object-fit: contain; background: var(--paper-deep); }
+.scroll-container figcaption { color: var(--ink); font-family: "Italiana", Georgia, serif; font-size: clamp(21px, 2.2vw, 31px); }
 .site-footer { display: flex; justify-content: space-between; gap: 15px; padding: 29px clamp(38px, 6.2vw, 100px); border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; }
 .site-footer a { color: var(--ink); text-decoration: none; }
 .site-footer a:hover { color: var(--accent); }
@@ -178,6 +189,11 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .content-grid { display: block; }
   .content-grid h2 { margin-bottom: 24px; font-size: 38px; }
   .content-copy { font-size: 13px; line-height: 1.6; }
+  .museum-section h2 { font-size: 38px; }
+  .museum-intro { margin: 6px 0 15px; font-size: 11px; }
+  .scroll-container figure { display: block; }
+  .scroll-container img { height: min(38dvh, 260px); }
+  .scroll-container figcaption { padding-top: 10px; font-size: 22px; }
   .coming-soon { min-width: 0; width: 100%; }
   .site-footer { display: none; }
 }
@@ -230,6 +246,8 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .content-copy { max-width: none; padding: 0; font-size: 11px; line-height: 1.4; }
   .content-copy p { margin-bottom: 5px; }
   .coming-soon, .event-placeholder { margin-top: 8px !important; }
+  .museum-section h2 { margin-top: 4px; font-size: 31px; }
+  .museum-intro { margin: 4px 0 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
