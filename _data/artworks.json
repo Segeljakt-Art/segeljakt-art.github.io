@@ -60,5 +60,14 @@
                                  "price":  "7500 kr",
                                  "medium":  "Olja",
                                  "dimensions":  "50*70 cm"
-                             }
+                             },
+    "PicassosHusmus.jpg":  {
+                               "title":  "PicassosHusmus",
+                               "year":  "Ej angivet",
+                               "copyright":  "Andreas Segeljakt",
+                               "painting_number":  "Ej angivet",
+                               "price":  "Ej angivet",
+                               "medium":  "Ej angivet",
+                               "dimensions":  "Ej angivet"
+                           }
 }
