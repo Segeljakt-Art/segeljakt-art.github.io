@@ -2,6 +2,12 @@
 
 Webbplatsen publiceras från `main` med GitHub Pages. Museet skapas automatiskt av bildfilerna i `assets/`, så nya bilder behöver inte läggas in i `index.html`.
 
+## Ladda upp från Windows
+
+Installera [Git for Windows](https://git-scm.com/download/win) en gång. Klona sedan webbplatsen med `git clone https://github.com/Segeljakt-Art/segeljakt-art.github.io.git` i en mapp på datorn. Dubbelklicka på **Ladda upp målning.bat** i den mappen. Välj en bild och fyll i titel, år, målningsnummer, pris, medium, dimensioner och upphovsrätt. Tryck Enter för att använda det visade standardvärdet. Skriptet hämtar senaste versionen, kopierar bilden, uppdaterar JSON-filen och publicerar ändringen. Första uppladdningen kan öppna en inloggning i webbläsaren via Git Credential Manager; kontot behöver skrivrätt till projektet.
+
+Nya bilder visas automatiskt i Museum när GitHub Pages är färdigt. Bildspelet på startsidan styrs separat i `script.js`. Om uppladdningen misslyckas efter att en commit har skapats sparas den lokalt; kör `git push origin main` när problemet är löst. Skriptet skriver inte över en bild med samma filnamn.
+
 ## Lägg till en målning
 
 1. Lägg en `.jpg`, `.jpeg`, `.png`, `.webp`, `.svg` eller `.gif` i `assets/` och pusha ändringen. Filnamnet ska inte börja med `_`, eftersom Jekyll då hoppar över filen.
