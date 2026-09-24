@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollbart bildgalleri</title>
+    <style>
+        /* Behållaren som skapar själva scrollbaren */
+        .scroll-container {
+            display: flex;          /* Lägger bilderna på en rad */
+            overflow-x: auto;       /* Aktiverar horisontell scroll när det behövs */
+            white-space: nowrap;    /* Förhindrar att bilderna hoppar ner på nästa rad */
+            gap: 15px;              /* Mellanrum mellan bilderna */
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+
+        /* Inställningar för bilderna */
+        .scroll-container img {
+            width: 300px;           /* Bestämmer bredden på bilderna */
+            height: 200px;          /* Bestämmer höjden på bilderna */
+            object-fit: cover;      /* Gör så att bilden inte blir utdragen/deformerad */
+            border-radius: 4px;
+            flex-shrink: 0;         /* Förhindrar att bilderna krymper för att få plats */
+        }
+
+        /* Snyggare scrollbar för Chrome, Edge och Safari (valfritt) */
+        .scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
 
