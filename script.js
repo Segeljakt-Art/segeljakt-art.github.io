@@ -18,6 +18,11 @@ const slides = [
     image: "./assets/painting-04.svg",
     alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
     title: "Exempelbild 04"
+  },
+   {
+    image: "./assets/painting-05.svg",
+    alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
+    title: "Exempelbild 05"
   }
 ];
 
