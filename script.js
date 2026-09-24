@@ -23,7 +23,15 @@ const slides = [
     image: "./assets/painting-05.svg",
     alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
     title: "Exempelbild 05"
+  },
+    {
+    image: "./assets/Picassos-Drömlandskap.jpg",
+    alt: "Tillfällig geometrisk bild i plommonlila, rosa och ockra",
+    title: "Exempelbild 06"
   }
+
+
+  
 ];
 
 const track = document.querySelector("#painting-track");
