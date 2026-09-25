@@ -48,7 +48,8 @@ const title = document.querySelector("#slide-title");
 const indexLabel = document.querySelector("#slide-index");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const autoDelay = 7000;
-const slideDuration = 500;
+const slideDuration = 320;
+const galleryFadeDuration = 300;
 let currentSlide = 0;
 let autoTimer;
 let transitioning = false;
@@ -89,25 +90,23 @@ function scheduleAuto() {
 function moveSlide(direction) {
   if (!slides.length || transitioning) return;
   window.clearTimeout(autoTimer);
-  if (reducedMotion.matches) {
-    currentSlide = wrappedIndex(currentSlide + direction);
-    renderSlide();
-    setTrackOffset(0, false);
-    scheduleAuto();
-    return;
-  }
-
   transitioning = true;
+  slideshow.classList.add("is-fading");
   const destination = direction > 0 ? -paintingWrap.clientWidth : paintingWrap.clientWidth;
   window.requestAnimationFrame(() => {
-    setTrackOffset(destination, true);
+    if (!reducedMotion.matches) setTrackOffset(destination, true);
     window.setTimeout(() => {
       currentSlide = wrappedIndex(currentSlide + direction);
       renderSlide();
       setTrackOffset(0, false);
-      transitioning = false;
-      scheduleAuto();
-    }, slideDuration + 30);
+      window.requestAnimationFrame(() => {
+        slideshow.classList.remove("is-fading");
+        window.setTimeout(() => {
+          transitioning = false;
+          scheduleAuto();
+        }, galleryFadeDuration);
+      });
+    }, slideDuration);
   });
 }
 
