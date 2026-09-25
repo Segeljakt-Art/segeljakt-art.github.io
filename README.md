@@ -10,6 +10,8 @@ Installera [Git](https://git-scm.com/downloads) och [Python 3](https://www.pytho
 
 På sidan ser du alla målningar med miniatyrbilder. Släpp en JPG-, PNG-, WebP- eller GIF-bild på sidan, eller klicka **välj en bild**. Klicka på målningen, fyll i titel, år, upphovsrätt, målningsnummer, pris, medium och dimensioner och klicka **Spara uppgifter**. Dra korten eller använd pilarna för att ändra ordning. **Ta bort målning** markerar den för borttagning; du kan ångra innan publicering. Klicka **Publicera ändringar** när allt är klart. Då skickas bilder, uppgifter, ordning och borttagningar till GitHub. Webbplatsen uppdateras efter att GitHub Pages har byggt den.
 
+Nya målningar får automatiskt nästa målningsnummer efter det högsta befintliga numret. Numret visas i formuläret och kan ändras innan publicering. Befintliga målningars nummer ändras inte.
+
 Ändringar stannar lokalt i programmet tills du publicerar. Om någon annan har uppdaterat projektet under tiden får du starta om programmet och göra om dina opublicerade ändringar. Om Git skapar en commit men uppladdningen misslyckas kan du försöka publicera igen i samma program.
 
 I gallerihanteraren kan du även välja **Ordna efter** pris, storlek, år, titel, medium eller målningsnummer och klicka **Använd ordning**. Den ordningen sparas på webbplatsen när du publicerar. Besökare kan sortera Museum tillfälligt med menyn **Sortera**; det ändrar inte den sparade ordningen. Storlek jämförs som yta i cm² när måtten kan läsas som bredd × höjd i mm, cm eller m. Mått i pixlar och okända värden hamnar sist.

@@ -77,6 +77,31 @@ class GalleryManagerTests(unittest.TestCase):
             self.session.publish()
         self.assertFalse((manager.ASSETS / "new.png").exists())
 
+    def test_new_paintings_receive_stable_sequential_numbers(self):
+        data = json.loads(manager.DATA.read_text(encoding="utf-8"))
+        data["first.jpg"]["painting_number"] = "10"
+        data["second.jpg"]["painting_number"] = "1"
+        manager.DATA.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        git(self.repo, "add", "_data/artworks.json")
+        git(self.repo, "commit", "-m", "Add existing numbers")
+        git(self.repo, "push", "origin", "main")
+        self.session.load()
+        self.session.base_commit = git(self.repo, "rev-parse", "HEAD")
+        self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
+        self.assertEqual(self.session.entries["new.png"]["painting_number"], "11")
+        self.session.add("discarded.png", b"\x89PNG\r\n\x1a\nother")
+        self.assertEqual(self.session.entries["discarded.png"]["painting_number"], "12")
+        self.session.delete("discarded.png")
+        self.session.add("another.png", b"\x89PNG\r\n\x1a\nlast")
+        self.assertEqual(self.session.entries["another.png"]["painting_number"], "13")
+        self.session.entries["new.png"]["title"] = "Ny"
+        self.session.entries["another.png"]["title"] = "En till"
+        self.session.publish()
+        saved = json.loads(manager.DATA.read_text(encoding="utf-8"))
+        self.assertEqual(saved["_next_painting_number"], 14)
+        self.session.add("later.png", b"\x89PNG\r\n\x1a\nlater")
+        self.assertEqual(self.session.entries["later.png"]["painting_number"], "14")
+
 
 if __name__ == "__main__":
     unittest.main()

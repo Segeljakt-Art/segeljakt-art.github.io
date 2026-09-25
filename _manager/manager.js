@@ -179,6 +179,11 @@ function renderInspector() {
     input.required = true;
     input.addEventListener("input", () => { formDirty = true; message("Uppgifterna är ändrade. Spara dem innan du publicerar."); });
     wrapper.append(input);
+    if (key === "painting_number" && item.new) {
+      const hint = document.createElement("small");
+      hint.textContent = "Tilldelat automatiskt. Du kan ändra numret.";
+      wrapper.append(hint);
+    }
     form.append(wrapper);
   });
   const actions = document.createElement("div");

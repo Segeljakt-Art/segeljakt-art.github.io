@@ -2,6 +2,7 @@
 
 import json
 import mimetypes
+import re
 import secrets
 import shutil
 import subprocess
@@ -88,6 +89,12 @@ class GallerySession:
 
     def load(self):
         self.data = json.loads(DATA.read_text(encoding="utf-8-sig"))
+        existing_numbers = [
+            int(info["painting_number"])
+            for info in self.data.values()
+            if isinstance(info, dict) and re.fullmatch(r"[0-9]+", str(info.get("painting_number", "")).strip())
+        ]
+        self.next_number = max(int(self.data.get("_next_painting_number", 1)), max(existing_numbers, default=0) + 1)
         files = {path.name for path in ASSETS.iterdir() if path.is_file() and path.suffix.lower() in EXTENSIONS and not path.name.startswith(('_', '.'))}
         saved_order = self.data.get("_order", [])
         self.order = [name for name in saved_order if name in files]
@@ -128,6 +135,10 @@ class GallerySession:
             defaults = self.data.get("_defaults", {})
             self.entries[name] = {key: str(defaults.get(key, "")) for key in FIELDS}
             self.entries[name]["title"] = ""
+            used_numbers = [int(info["painting_number"]) for info in self.entries.values() if re.fullmatch(r"[0-9]+", info.get("painting_number", "").strip())]
+            number = max(self.next_number, max(used_numbers, default=0) + 1)
+            self.entries[name]["painting_number"] = str(number)
+            self.next_number = number + 1
             self.new_files[name] = target
             self.order.append(name)
             self.dirty = True
@@ -209,6 +220,7 @@ class GallerySession:
             for name in self.order:
                 updated[name] = dict(self.entries[name])
             updated["_order"] = list(self.order)
+            updated["_next_painting_number"] = self.next_number
             for name, source in self.new_files.items():
                 shutil.copy2(source, ASSETS / name)
             for name in self.deleted:
