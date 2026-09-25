@@ -1,7 +1,8 @@
 ---
 ---
 <!doctype html>
-<html lang="sv">
+<!-- Välj färgtema: sand, sage eller charcoal. Välj bildvy: light eller dark. -->
+<html lang="sv" data-theme="sand" data-artwork-view="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-11" />
-    <script src="./script.js?v=sv-9" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-12" />
+    <script src="./script.js?v=sv-10" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -73,7 +74,6 @@ SIDBAREN
                   <span class="artwork-index" id="slide-index">01 / 07</span>
                   <div>
                     <h2 id="slide-title">Picassos Drömlandskap</h2>
-                    <p id="slide-description">Picassos Drömlandskap</p>
                     <p class="slide-copyright">© Andreas Segeljakt</p>
                   </div>
                 </div>
@@ -117,8 +117,7 @@ SIDBAREN
                   {% if artwork_file.path contains '/assets/' %}
                     {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.webp' or extension == '.svg' or extension == '.gif' %}
                       {% assign info = site.data.artworks[artwork_file.name] %}
-                      {% assign fallback_title = artwork_file.basename | replace: '-', ' ' %}
-                      {% assign artwork_title = info.title | default: fallback_title %}
+                      {% assign artwork_title = info.title | default: 'Utan titel' %}
                       <figure>
                         <button class="museum-image-button" type="button" aria-label="Visa {{ artwork_title | escape }} större">
                           <img src="{{ artwork_file.path | relative_url | escape }}" alt="{{ artwork_title | escape }}" loading="lazy" />

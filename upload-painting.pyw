@@ -123,8 +123,6 @@ class UploadWindow:
         if filename:
             image = Path(filename)
             self.image_path.set(str(image))
-            if not self.values["title"].get().strip():
-                self.values["title"].set(image.stem)
 
     def start_upload(self):
         image = Path(self.image_path.get())

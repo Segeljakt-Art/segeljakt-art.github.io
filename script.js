@@ -1,10 +1,10 @@
 const slides = [
   { image: "./assets/Picassos-Drömlandskap.jpg", alt: "Picassos Drömlandskap", title: "Picassos Drömlandskap" },
   { image: "./assets/Picassos-Mysfilt.svg", alt: "Picassos Mysfilt", title: "Picassos Mysfilt" },
-  { image: "./assets/Bergsleden.jpg", alt: "Bergsleden", title: "Bergsleden" },
-  { image: "./assets/Bergstunnel.jpg", alt: "Bergstunnel", title: "Bergstunnel" },
-  { image: "./assets/Picassos Abstrakta Mystism.jpg", alt: "Picassos Abstrakta Mystism", title: "Picassos Abstrakta Mystism" },
-  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Picassos Abstrakta Mystism 2", title: "Picassos Abstrakta Mystism 2" },
+  { image: "./assets/Bergsleden.jpg", alt: "Test", title: "Test" },
+  { image: "./assets/Bergstunnel.jpg", alt: "Test", title: "Test" },
+  { image: "./assets/Picassos Abstrakta Mystism.jpg", alt: "Målning utan titel", title: "Utan titel" },
+  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Målning utan titel", title: "Utan titel" },
   { image: "./assets/stillhet-vid-vattnet-2026.png", alt: "Stillhet vid vattnet", title: "Stillhet vid vattnet" }
 ];
 
@@ -182,3 +182,8 @@ activateSection(window.location.hash.slice(1));
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector("#footer-year").textContent = new Date().getFullYear();
+
+const browserThemeColor = document.querySelector('meta[name="theme-color"]');
+if (browserThemeColor) {
+  browserThemeColor.content = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
+}
