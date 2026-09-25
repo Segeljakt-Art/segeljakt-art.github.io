@@ -4,8 +4,7 @@ const slides = [
   { image: "./assets/Bergsleden.jpg", alt: "Test", title: "Test" },
   { image: "./assets/Bergstunnel.jpg", alt: "Test", title: "Test" },
   { image: "./assets/Picassos Abstrakta Mystism.jpg", alt: "Målning utan titel", title: "Utan titel" },
-  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Målning utan titel", title: "Utan titel" },
-  { image: "./assets/stillhet-vid-vattnet-2026.png", alt: "Stillhet vid vattnet", title: "Stillhet vid vattnet" }
+  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Målning utan titel", title: "Utan titel" }
 ];
 
 const track = document.querySelector("#painting-track");

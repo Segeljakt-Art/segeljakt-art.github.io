@@ -19,8 +19,6 @@ En bild visas även utan en JSON-post. Då visas ”Utan titel” och värdena u
 
 Museet visar bilderna i bokstavsordning efter filnamn. Klicka på en bild för att se den större. Bildspelet på startsidan har en egen ordning som fortfarande styrs i `script.js`.
 
-`stillhet-vid-vattnet-2026.png` är ett AI-genererat digitalt koncept och är märkt som sådant i metadatafilen. Det är inte en fysisk originalmålning.
-
 ## Byt färgtema
 
 Öppna `index.html` och ändra de två attributen på `<html>` högst upp:
