@@ -40,6 +40,7 @@ class GalleryManagerTests(unittest.TestCase):
             "second.jpg": {"title": "Andra"},
         }
         (self.repo / "_data" / "artworks.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        (self.repo / "index.html").write_text('---\n---\n<html data-theme="sand" data-artwork-view="light"><div><!-- PREVIEW_ARTWORKS_START -->{% include artwork-card.html %}<!-- PREVIEW_ARTWORKS_END --></div></html>', encoding="utf-8")
         git(self.repo, "add", ".")
         git(self.repo, "commit", "-m", "Initial")
         git(self.repo, "remote", "add", "origin", str(remote))
@@ -114,6 +115,26 @@ class GalleryManagerTests(unittest.TestCase):
         self.assertEqual(saved["_next_painting_number"], 14)
         self.session.add("later.png", b"\x89PNG\r\n\x1a\nlater")
         self.assertEqual(self.session.entries["later.png"]["painting_number"], "14")
+
+    def test_theme_and_preview_include_unpublished_changes(self):
+        self.session.set_theme("sage", "dark")
+        self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
+        details = dict(self.session.entries["new.png"])
+        details["title"] = "Ny & fin"
+        self.session.update("new.png", details)
+        preview = self.session.preview()
+        self.assertIn('data-theme="sage"', preview)
+        self.assertIn('data-artwork-view="dark"', preview)
+        self.assertIn('data-title="Ny &amp; fin"', preview)
+        self.assertIn('/art/new.png', preview)
+        self.assertNotIn('{% include', preview)
+        self.session.publish()
+        published = (self.repo / "index.html").read_text(encoding="utf-8")
+        self.assertIn('data-theme="sage"', published)
+        self.assertIn('data-artwork-view="dark"', published)
+        self.assertEqual(git(self.repo, "rev-list", "--count", "origin/main..HEAD"), "0")
+        with self.assertRaises(manager.GalleryError):
+            self.session.set_theme("invalid", "light")
 
 
 if __name__ == "__main__":

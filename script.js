@@ -138,11 +138,14 @@ const artworkDialogImage = document.querySelector("#artwork-dialog-image");
 const artworkDialogTitle = document.querySelector("#artwork-dialog-title");
 const artworkDialogMeta = document.querySelector("#artwork-dialog-meta");
 const dialogClose = document.querySelector("#dialog-close");
+const dialogPrev = document.querySelector("#dialog-prev");
+const dialogNext = document.querySelector("#dialog-next");
 let lastMuseumTrigger;
+let pendingMuseumTrigger;
+let museumFadeTimer;
+let museumFadeFrame;
 
-museumScroll.addEventListener("click", event => {
-  const trigger = event.target.closest(".museum-image-button");
-  if (!trigger) return;
+function showMuseumArtwork(trigger) {
   const artwork = trigger.querySelector("img");
   const caption = trigger.parentElement.querySelector("figcaption");
   artworkDialogImage.src = artwork.getAttribute("src");
@@ -150,9 +153,43 @@ museumScroll.addEventListener("click", event => {
   artworkDialogTitle.textContent = caption.querySelector(".artwork-title").textContent;
   artworkDialogMeta.replaceChildren(...[...caption.querySelectorAll(".artwork-meta")].map(line => line.cloneNode(true)));
   lastMuseumTrigger = trigger;
+}
+
+function moveMuseumArtwork(direction) {
+  const triggers = [...museumScroll.querySelectorAll(".museum-image-button")];
+  if (!triggers.length) return;
+  const index = triggers.indexOf(pendingMuseumTrigger || lastMuseumTrigger);
+  pendingMuseumTrigger = triggers[(index + direction + triggers.length) % triggers.length];
+  if (reducedMotion.matches) {
+    showMuseumArtwork(pendingMuseumTrigger);
+    pendingMuseumTrigger = null;
+    return;
+  }
+  artworkDialog.classList.add("is-changing");
+  window.clearTimeout(museumFadeTimer);
+  window.cancelAnimationFrame(museumFadeFrame);
+  museumFadeTimer = window.setTimeout(() => {
+    showMuseumArtwork(pendingMuseumTrigger);
+    pendingMuseumTrigger = null;
+    museumFadeFrame = window.requestAnimationFrame(() => artworkDialog.classList.remove("is-changing"));
+  }, 170);
+}
+
+museumScroll.addEventListener("click", event => {
+  const trigger = event.target.closest(".museum-image-button");
+  if (!trigger) return;
+  showMuseumArtwork(trigger);
   artworkDialog.showModal();
 });
 
+dialogPrev.addEventListener("click", () => moveMuseumArtwork(-1));
+dialogNext.addEventListener("click", () => moveMuseumArtwork(1));
+artworkDialog.addEventListener("keydown", event => {
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    moveMuseumArtwork(event.key === "ArrowLeft" ? -1 : 1);
+  }
+});
 dialogClose.addEventListener("click", () => artworkDialog.close());
 artworkDialog.addEventListener("click", event => {
   const bounds = artworkDialog.getBoundingClientRect();
@@ -161,7 +198,13 @@ artworkDialog.addEventListener("click", event => {
     artworkDialog.close();
   }
 });
-artworkDialog.addEventListener("close", () => lastMuseumTrigger?.focus());
+artworkDialog.addEventListener("close", () => {
+  window.clearTimeout(museumFadeTimer);
+  window.cancelAnimationFrame(museumFadeFrame);
+  pendingMuseumTrigger = null;
+  artworkDialog.classList.remove("is-changing");
+  lastMuseumTrigger?.focus();
+});
 
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = navLinks.map(link => document.querySelector(link.getAttribute("href")));

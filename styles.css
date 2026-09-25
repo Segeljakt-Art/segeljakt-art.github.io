@@ -135,10 +135,11 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .content-copy { max-width: 410px; padding-top: 5px; color: var(--copy); font-size: 15px; line-height: 1.8; }
 .content-copy p { margin: 0 0 15px; }
 .contact-section { background: var(--contact-bg); }
+.contact-email { color: var(--accent); font-weight: 600; overflow-wrap: anywhere; text-underline-offset: 4px; }
 .coming-soon { display: flex; justify-content: space-between; gap: 15px; width: fit-content; min-width: 245px; margin-top: 31px !important; padding-bottom: 10px; border-bottom: 1px solid var(--accent); color: var(--ink); font-size: 10px; line-height: 1.4; }
 .event-placeholder { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 28px; padding: 17px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; }
 .event-placeholder span:last-child { color: var(--accent); font-size: 17px; }
-.content-section.museum-section { padding-top: clamp(12px, 2dvh, 24px); padding-right: clamp(10px, 1.8vw, 28px); padding-bottom: clamp(12px, 2dvh, 24px); }
+.content-section.museum-section { padding-top: clamp(12px, 2dvh, 24px); padding-inline: clamp(10px, 1.8vw, 28px); padding-bottom: clamp(12px, 2dvh, 24px); }
 .museum-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 9px; flex: none; margin-bottom: 8px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
 .museum-toolbar select { max-width: min(100%, 210px); padding: 6px 26px 6px 8px; border: 1px solid var(--line); border-radius: 2px; background: var(--card-bg); color: var(--ink); font: inherit; letter-spacing: normal; }
 .museum-gallery { flex: 1; min-height: 0; }
@@ -147,7 +148,8 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .scroll-container::-webkit-scrollbar-track { background: var(--line); }
 .scroll-container::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--accent); }
 .scroll-container figure { min-width: 0; margin: 0; padding: 6px; border: 1px solid var(--line); background: var(--card-bg); }
-.museum-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.museum-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: grab; }
+.museum-image-button:active { cursor: grabbing; }
 .scroll-container img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--paper-deep); }
 .scroll-container figcaption { padding: 8px 2px 2px; color: var(--muted); font-size: 10px; line-height: 1.35; }
 .artwork-title { display: block; margin-bottom: 5px; color: var(--ink); font-size: 11px; font-weight: 600; }
@@ -157,6 +159,14 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .artwork-dialog[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; }
 .artwork-dialog::backdrop { background: var(--view-backdrop); }
 .artwork-dialog img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: contain; }
+.artwork-dialog #artwork-dialog-image { width: calc(100% - 92px); }
+.artwork-dialog #artwork-dialog-image { transition: opacity .17s ease; }
+.artwork-dialog.is-changing #artwork-dialog-image { opacity: 0; }
+.dialog-nav { position: absolute; top: 50%; display: grid; place-items: center; width: 40px; height: 56px; transform: translateY(-50%); border: 1px solid var(--view-line); background: var(--view-bg); color: var(--view-ink); cursor: pointer; font-size: 36px; line-height: 1; }
+.dialog-nav:hover { color: var(--accent); }
+.dialog-prev { left: 18px; }
+.dialog-next { right: 18px; }
+@media (prefers-reduced-motion: reduce) { .artwork-dialog #artwork-dialog-image { transition: none; } }
 .artwork-dialog-info { flex: none; max-width: 100%; text-align: center; }
 .artwork-dialog p { margin: 0 0 7px; color: var(--view-ink); font-family: "Italiana", Georgia, serif; font-size: 22px; }
 .artwork-dialog-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px 14px; color: var(--view-muted); font-size: 10px; }
@@ -261,6 +271,10 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
   .scroll-container figcaption { font-size: 10px; }
   .artwork-title { font-size: 11px; }
   .artwork-dialog { width: calc(100vw - 20px); height: calc(100dvh - 20px); padding: 50px 12px 16px; }
+  .artwork-dialog #artwork-dialog-image { width: calc(100% - 66px); }
+  .dialog-nav { width: 28px; height: 42px; font-size: 27px; }
+  .dialog-prev { left: 8px; }
+  .dialog-next { right: 8px; }
   .artwork-dialog p { font-size: 18px; }
   .artwork-dialog-meta { font-size: 9px; }
   .coming-soon { min-width: 0; width: 100%; }

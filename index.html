@@ -12,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-13" />
+    <link rel="stylesheet" href="./styles.css?v=sv-15" />
     <script src="./artwork-sort.js?v=1" defer></script>
-    <script src="./script.js?v=sv-13" defer></script>
+    <script src="./script.js?v=sv-15" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -96,7 +96,7 @@ SIDBAREN
             <p class="eyebrow">03 / KONTAKT</p>
             <div class="content-grid">
               <h2 id="contact-heading">Hör av <em>dig.</em></h2>
-              <div class="content-copy"><p>Kontaktuppgifter för frågor om verk, utställningar och samarbeten kommer att finnas här.</p><p class="coming-soon">KONTAKTUPPGIFTER KOMMER SNART</p></div>
+              <div class="content-copy"><p>För frågor om verk, utställningar och samarbeten, skriv till Andreas.</p><p><a class="contact-email" href="mailto:andreas.segeljakt@gmail.com">andreas.segeljakt@gmail.com</a></p></div>
             </div>
           </section>
 
@@ -126,6 +126,7 @@ SIDBAREN
             </div>
             <div class="museum-gallery">
               <div class="scroll-container" id="museum-scroll" role="region" aria-label="Bilder i museet" tabindex="0">
+                <!-- PREVIEW_ARTWORKS_START -->
                 {% assign museum_files = site.static_files | sort: "path" %}
                 {% assign ordered_names = site.data.artworks._order %}
                 {% for ordered_name in ordered_names %}
@@ -140,6 +141,7 @@ SIDBAREN
                     {% include artwork-card.html file=artwork_file %}
                   {% endunless %}
                 {% endfor %}
+                <!-- PREVIEW_ARTWORKS_END -->
               </div>
             </div>
           </section>
@@ -148,7 +150,9 @@ SIDBAREN
 
         <dialog class="artwork-dialog" id="artwork-dialog" aria-labelledby="artwork-dialog-title">
           <button class="dialog-close" id="dialog-close" type="button" aria-label="Stäng bild">×</button>
+          <button class="dialog-nav dialog-prev" id="dialog-prev" type="button" aria-label="Föregående målning">‹</button>
           <img id="artwork-dialog-image" alt="" />
+          <button class="dialog-nav dialog-next" id="dialog-next" type="button" aria-label="Nästa målning">›</button>
           <div class="artwork-dialog-info">
             <p id="artwork-dialog-title"></p>
             <div class="artwork-dialog-meta" id="artwork-dialog-meta"></div>

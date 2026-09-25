@@ -5,6 +5,8 @@ const notice = document.querySelector("#notice");
 const publishButton = document.querySelector("#publish");
 const fileInput = document.querySelector("#file-input");
 const dropzone = document.querySelector("#dropzone");
+const themeSelect = document.querySelector("#site-theme");
+const artworkViewSelect = document.querySelector("#artwork-view");
 let state = { artworks: [], deleted: [], dirty: false };
 let selected = null;
 let formDirty = false;
@@ -101,13 +103,7 @@ function renderCards() {
     actions.className = "art-card-actions";
     const badge = document.createElement("span");
     badge.textContent = item.new ? "NY" : `${index + 1} / ${state.artworks.length}`;
-    const left = createButton("↑", () => move(index, -1));
-    const right = createButton("↓", () => move(index, 1));
-    left.setAttribute("aria-label", "Flytta upp " + (item.details.title || item.name));
-    right.setAttribute("aria-label", "Flytta ner " + (item.details.title || item.name));
-    left.disabled = index === 0;
-    right.disabled = index === state.artworks.length - 1;
-    actions.append(badge, left, right);
+    actions.append(badge);
     card.append(main, actions);
     card.addEventListener("dragstart", event => {
       event.dataTransfer.setData("text/plain", item.name);
@@ -131,12 +127,6 @@ function renderCards() {
     grid.append(card);
   });
   document.querySelector("#count").textContent = `${state.artworks.length} målningar`;
-}
-async function move(index, delta) {
-  if (formDirty && !confirmDiscard()) return;
-  const names = state.artworks.map(item => item.name);
-  [names[index], names[index + delta]] = [names[index + delta], names[index]];
-  if (await action("/api/reorder", { order: names })) message("Ordningen är ändrad. Klicka Publicera när du är klar.");
 }
 async function reorder(from, to) {
   if (!from || from === to || (formDirty && !confirmDiscard())) return;
@@ -225,6 +215,8 @@ function renderRemoved() {
   });
 }
 function render() {
+  themeSelect.value = state.theme || "sand";
+  artworkViewSelect.value = state.artwork_view || "light";
   renderCards();
   renderInspector();
   renderRemoved();
@@ -232,6 +224,15 @@ function render() {
   if (state.error) message(state.error, true);
   else if (state.pending_push) message("En commit väntar på uppladdning. Klicka Publicera igen.", true);
 }
+async function saveTheme() {
+  if (formDirty && !confirmDiscard()) { render(); return; }
+  if (await action("/api/theme", { theme: themeSelect.value, artwork_view: artworkViewSelect.value })) message("Utseendet är sparat lokalt. Förhandsvisa eller klicka Publicera när du är klar.");
+}
+themeSelect.addEventListener("change", saveTheme);
+artworkViewSelect.addEventListener("change", saveTheme);
+document.querySelector(".preview-link").addEventListener("click", () => {
+  if (formDirty) message("Spara målningens uppgifter först om du vill se dem i förhandsvisningen.");
+});
 async function addFile(file) {
   if (!file) return;
   if (formDirty && !confirmDiscard()) return;

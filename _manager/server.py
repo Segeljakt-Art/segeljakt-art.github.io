@@ -3,6 +3,7 @@
 import json
 import mimetypes
 import re
+from html import escape
 import secrets
 import shutil
 import subprocess
@@ -11,7 +12,7 @@ import threading
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import quote, unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
@@ -21,6 +22,8 @@ FIELDS = ("title", "year", "copyright", "painting_number", "price", "medium", "d
 EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"}
 UPLOAD_EXTENSIONS = EXTENSIONS - {".svg"}
 MAX_IMAGE_BYTES = 30 * 1024 * 1024
+THEMES = {"sand", "sage", "charcoal"}
+ARTWORK_VIEWS = {"light", "dark"}
 
 
 class GalleryError(Exception):
@@ -63,6 +66,8 @@ class GallerySession:
         self.dirty = False
         self.pending_push = False
         self.error = None
+        self.theme = "sand"
+        self.artwork_view = "light"
         try:
             self.sync()
             self.load()
@@ -89,6 +94,9 @@ class GallerySession:
 
     def load(self):
         self.data = json.loads(DATA.read_text(encoding="utf-8-sig"))
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.theme = re.search(r'<html\b[^>]*data-theme="([^"]+)"', html).group(1)
+        self.artwork_view = re.search(r'<html\b[^>]*data-artwork-view="([^"]+)"', html).group(1)
         existing_numbers = [
             int(info["painting_number"])
             for info in self.data.values()
@@ -114,7 +122,39 @@ class GallerySession:
                 "dirty": self.dirty,
                 "pending_push": self.pending_push,
                 "error": self.error,
+                "theme": self.theme,
+                "artwork_view": self.artwork_view,
             }
+
+    def set_theme(self, theme, artwork_view):
+        with self.lock:
+            if self.error or self.pending_push:
+                raise GalleryError(self.error or "Slutför den väntande uppladdningen först.")
+            if theme not in THEMES or artwork_view not in ARTWORK_VIEWS:
+                raise GalleryError("Ogiltigt färgtema.")
+            if (theme, artwork_view) != (self.theme, self.artwork_view):
+                self.theme = theme
+                self.artwork_view = artwork_view
+                self.dirty = True
+            return self.state()
+
+    def preview(self):
+        with self.lock:
+            html = (ROOT / "index.html").read_text(encoding="utf-8")
+            html = re.sub(r"\A---\s*---\s*", "", html)
+            html = re.sub(r'(<html\b[^>]*data-theme=")[^"]+', lambda match: match.group(1) + self.theme, html, count=1)
+            html = re.sub(r'(<html\b[^>]*data-artwork-view=")[^"]+', lambda match: match.group(1) + self.artwork_view, html, count=1)
+            cards = []
+            for name in self.order:
+                info = self.entries[name]
+                title = escape(info["title"] or "Utan titel", quote=True)
+                values = {key: escape(info[key], quote=True) for key in FIELDS}
+                lines = "".join(f'<span class="artwork-meta"><strong>{label}:</strong> {values[key]}</span>' for key, label in (("year", "År"), ("medium", "Medium"), ("dimensions", "Dimensioner"), ("painting_number", "Målningsnummer"), ("price", "Pris")))
+                cards.append(f'<figure data-title="{title}" data-price="{values["price"]}" data-dimensions="{values["dimensions"]}" data-year="{values["year"]}" data-medium="{values["medium"]}" data-painting-number="{values["painting_number"]}"><button class="museum-image-button" type="button" aria-label="Visa {title} större"><img src="/art/{quote(name)}" alt="{title}" loading="lazy"></button><figcaption><strong class="artwork-title">{title}</strong>{lines}<span class="artwork-meta">© {values["copyright"]}</span></figcaption></figure>')
+            html, count = re.subn(r'<!-- PREVIEW_ARTWORKS_START -->.*?<!-- PREVIEW_ARTWORKS_END -->', "\n".join(cards), html, count=1, flags=re.S)
+            if count != 1:
+                raise GalleryError("Förhandsvisningen kunde inte skapas.")
+            return html
 
     def add(self, name, content):
         with self.lock:
@@ -223,6 +263,9 @@ class GallerySession:
                 updated[name] = dict(self.entries[name])
             updated["_order"] = list(self.order)
             updated["_next_painting_number"] = self.next_number
+            html = (ROOT / "index.html").read_text(encoding="utf-8")
+            html = re.sub(r'(<html\b[^>]*data-theme=")[^"]+', lambda match: match.group(1) + self.theme, html, count=1)
+            html = re.sub(r'(<html\b[^>]*data-artwork-view=")[^"]+', lambda match: match.group(1) + self.artwork_view, html, count=1)
             for name, source in self.new_files.items():
                 shutil.copy2(source, ASSETS / name)
             for name in self.deleted:
@@ -230,7 +273,8 @@ class GallerySession:
             temporary_data = DATA.with_suffix(".json.tmp")
             temporary_data.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             temporary_data.replace(DATA)
-            paths = ["_data/artworks.json"] + [f"assets/{name}" for name in self.new_files] + [f"assets/{name}" for name in self.deleted]
+            (ROOT / "index.html").write_text(html, encoding="utf-8")
+            paths = ["_data/artworks.json", "index.html"] + [f"assets/{name}" for name in self.new_files] + [f"assets/{name}" for name in self.deleted]
             git("add", "-A", "--", *paths)
             if not git("diff", "--cached", "--name-only"):
                 self.dirty = False
@@ -264,7 +308,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "no-referrer")
-        self.send_header("Content-Security-Policy", "default-src 'self' 'unsafe-inline' data: blob:; object-src 'none'")
+        self.send_header("Content-Security-Policy", "default-src 'self' 'unsafe-inline' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; object-src 'none'")
         self.end_headers()
         self.wfile.write(content)
 
@@ -282,8 +326,10 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/":
             html = (HERE / "manager.html").read_text(encoding="utf-8").replace("__TOKEN__", TOKEN)
             self.send_bytes(200, html.encode("utf-8"), "text/html; charset=utf-8")
-        elif path in {"/manager.css", "/manager.js", "/artwork-sort.js"}:
-            file = ROOT / "artwork-sort.js" if path == "/artwork-sort.js" else HERE / path[1:]
+        elif path == "/preview":
+            self.send_bytes(200, SESSION.preview().encode("utf-8"), "text/html; charset=utf-8")
+        elif path in {"/manager.css", "/manager.js", "/artwork-sort.js", "/styles.css", "/script.js"}:
+            file = ROOT / path[1:] if path in {"/artwork-sort.js", "/styles.css", "/script.js"} else HERE / path[1:]
             self.send_bytes(200, file.read_bytes(), "text/css; charset=utf-8" if path.endswith(".css") else "text/javascript; charset=utf-8")
         elif path == "/api/state":
             self.send_json(200, SESSION.state())
@@ -323,6 +369,8 @@ class Handler(BaseHTTPRequestHandler):
                     result = SESSION.update(payload.get("name"), payload.get("details"))
                 elif path == "/api/reorder":
                     result = SESSION.reorder(payload.get("order"))
+                elif path == "/api/theme":
+                    result = SESSION.set_theme(payload.get("theme"), payload.get("artwork_view"))
                 elif path == "/api/delete":
                     result = SESSION.delete(payload.get("name"))
                 elif path == "/api/restore":
