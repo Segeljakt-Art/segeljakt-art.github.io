@@ -1,11 +1,11 @@
-const slides = [
-  { image: "./assets/Picassos-Drömlandskap.jpg", alt: "Picassos Drömlandskap", title: "Picassos Drömlandskap" },
-  { image: "./assets/Picassos-Mysfilt.svg", alt: "Picassos Mysfilt", title: "Picassos Mysfilt" },
-  { image: "./assets/Bergsleden.jpg", alt: "Test", title: "Test" },
-  { image: "./assets/Bergstunnel.jpg", alt: "Test", title: "Test" },
-  { image: "./assets/Picassos Abstrakta Mystism.jpg", alt: "Målning utan titel", title: "Utan titel" },
-  { image: "./assets/Picassos Abstrakta Mystism 2.jpg", alt: "Målning utan titel", title: "Utan titel" }
-];
+const slides = [...document.querySelectorAll("#museum-scroll figure")].map(figure => {
+  const image = figure.querySelector("img");
+  return {
+    image: image.getAttribute("src"),
+    alt: image.alt,
+    title: figure.querySelector(".artwork-title").textContent.trim()
+  };
+});
 
 const track = document.querySelector("#painting-track");
 const images = [...track.querySelectorAll(".painting")];
@@ -28,6 +28,12 @@ function wrappedIndex(index) {
 }
 
 function renderSlide() {
+  if (!slides.length) {
+    images.forEach(image => { image.removeAttribute("src"); image.alt = ""; });
+    title.textContent = "Inga målningar ännu";
+    indexLabel.textContent = "00 / 00";
+    return;
+  }
   [currentSlide - 1, currentSlide, currentSlide + 1].forEach((index, position) => {
     const slide = slides[wrappedIndex(index)];
     images[position].src = slide.image;
@@ -45,12 +51,12 @@ function setTrackOffset(offset, animate) {
 
 function scheduleAuto() {
   window.clearTimeout(autoTimer);
-  if (document.hidden || !gallery.classList.contains("is-current") || drag) return;
+  if (!slides.length || document.hidden || !gallery.classList.contains("is-current") || drag) return;
   autoTimer = window.setTimeout(() => moveSlide(1), autoDelay);
 }
 
 function moveSlide(direction) {
-  if (transitioning) return;
+  if (!slides.length || transitioning) return;
   window.clearTimeout(autoTimer);
   if (reducedMotion.matches) {
     currentSlide = wrappedIndex(currentSlide + direction);
@@ -94,7 +100,7 @@ slideshow.addEventListener("keydown", event => {
   if (event.key === "ArrowRight") { event.preventDefault(); moveSlide(1); }
 });
 swipeArea.addEventListener("pointerdown", event => {
-  if (transitioning || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+  if (!slides.length || transitioning || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
   window.clearTimeout(autoTimer);
   drag = { id: event.pointerId, x: event.clientX, y: event.clientY, offset: 0, axis: null };
   swipeArea.setPointerCapture(event.pointerId);

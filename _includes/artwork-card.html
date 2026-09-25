@@ -1,0 +1,23 @@
+{% assign artwork_file = include.file %}
+{% assign extension = artwork_file.extname | downcase %}
+{% if artwork_file.path contains '/assets/' %}
+  {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.webp' or extension == '.svg' or extension == '.gif' %}
+    {% assign info = site.data.artworks[artwork_file.name] %}
+    {% assign defaults = site.data.artworks._defaults %}
+    {% assign artwork_title = info.title | default: 'Utan titel' %}
+    <figure>
+      <button class="museum-image-button" type="button" aria-label="Visa {{ artwork_title | escape }} större">
+        <img src="{{ artwork_file.path | relative_url | escape }}" alt="{{ artwork_title | escape }}" loading="lazy" />
+      </button>
+      <figcaption>
+        <strong class="artwork-title">{{ artwork_title | escape }}</strong>
+        <span class="artwork-meta"><strong>År:</strong> {{ info.year | default: defaults.year | escape }}</span>
+        <span class="artwork-meta"><strong>Medium:</strong> {{ info.medium | default: defaults.medium | escape }}</span>
+        <span class="artwork-meta"><strong>Dimensioner:</strong> {{ info.dimensions | default: defaults.dimensions | escape }}</span>
+        <span class="artwork-meta"><strong>Målningsnummer:</strong> {{ info.painting_number | default: defaults.painting_number | escape }}</span>
+        <span class="artwork-meta"><strong>Pris:</strong> {{ info.price | default: defaults.price | escape }}</span>
+        <span class="artwork-meta">© {{ info.copyright | default: defaults.copyright | escape }}</span>
+      </figcaption>
+    </figure>
+  {% endif %}
+{% endif %}

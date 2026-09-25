@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="gallery-token" content="__TOKEN__">
+  <title>Gallerihanterare · Segeljakt art</title>
+  <link rel="stylesheet" href="/manager.css">
+  <script src="/manager.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="rail">
+      <div class="brand">Segeljakt <em>art</em><span>.</span></div>
+      <p class="rail-caption">GALLERIHANTERARE</p>
+      <div class="rail-note">Redigera i lugn och ro. Ändringarna publiceras först när du klickar på Publicera.</div>
+      <div class="rail-bottom"><span id="count">0 målningar</span><button id="quit" type="button">Avsluta</button></div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">ANDREAS SEGELJAKT / KONSTGALLERI</p><h1>Hantera målningar</h1><p class="intro">Välj en målning för att ändra uppgifter. Dra korten för att ändra ordning i Museum och bildspelet.</p></div>
+        <button class="publish" id="publish" type="button" disabled>Publicera ändringar</button>
+      </header>
+      <div class="notice" id="notice" role="status" aria-live="polite"></div>
+      <section class="dropzone" id="dropzone" tabindex="0" aria-label="Lägg till målningar">
+        <div class="drop-icon">＋</div><div><strong>Släpp en bild här</strong><p>eller <button class="text-button" id="choose" type="button">välj en bild</button> · JPG, PNG, WebP eller GIF · högst 30 MB</p></div>
+        <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+      </section>
+      <div class="section-heading"><h2>Alla målningar</h2><span>Dra för ordning · klicka för detaljer</span></div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+      <section class="removed" id="removed" hidden><h2>Borttagna i den här omgången</h2><div id="removed-list"></div></section>
+    </main>
+    <aside class="inspector" id="inspector"><div class="inspector-empty"><span>✳</span><h2>Välj en målning</h2><p>Här visas titel, år, upphovsrätt, målningsnummer, pris, medium och dimensioner.</p></div></aside>
+  </div>
+</body>
+</html>

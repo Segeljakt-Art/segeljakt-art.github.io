@@ -2,22 +2,17 @@
 
 Webbplatsen publiceras från `main` med GitHub Pages. Museet skapas automatiskt av bildfilerna i `assets/`, så nya bilder behöver inte läggas in i `index.html`.
 
-## Ladda upp från Windows
+## Hantera målningar på Mac och Windows
 
-Installera [Git for Windows](https://git-scm.com/download/win) och [Python 3 för Windows](https://www.python.org/downloads/windows/) en gång. Se till att Python-kommandon och Tcl/Tk installeras. Klona sedan webbplatsen med `git clone https://github.com/Segeljakt-Art/segeljakt-art.github.io.git` i en mapp på datorn.
+Installera [Git](https://git-scm.com/downloads) och [Python 3](https://www.python.org/downloads/) en gång. Klona webbplatsen med `git clone https://github.com/Segeljakt-Art/segeljakt-art.github.io.git`. Git använder din vanliga GitHub-inloggning när du publicerar; kontot behöver skrivrätt till projektet.
 
-Dubbelklicka på **Ladda upp målning.cmd** i den klonade mappen. Programmet öppnar ett fönster där du väljer bild och fyller i titel, år, målningsnummer, pris, medium, dimensioner och upphovsrätt. Titeln måste fyllas i; övriga fält visas med standardvärden. Klicka på **Ladda upp målning**. Programmet hämtar senaste versionen, kopierar bilden, uppdaterar JSON-filen och publicerar ändringen. Första uppladdningen kan öppna en GitHub-inloggning i webbläsaren via Git Credential Manager; kontot behöver skrivrätt till projektet.
+Öppna den klonade projektmappen och dubbelklicka på **Hantera galleri.command** på Mac eller **Hantera galleri.cmd** på Windows. En lokal sida öppnas i webbläsaren. På Mac öppnas även ett Terminal-fönster som ska vara öppet medan du arbetar. Programmet använder bara Python-standardbiblioteket; inga extra Python-paket behövs.
 
-Nya bilder visas automatiskt i Museum när GitHub Pages är färdigt. Bildspelet på startsidan styrs separat i `script.js`. Programmet skriver inte över en bild med samma filnamn. Om en commit skapades men uppladdningen misslyckades, kör `git push origin main` när problemet är löst.
+På sidan ser du alla målningar med miniatyrbilder. Släpp en JPG-, PNG-, WebP- eller GIF-bild på sidan, eller klicka **välj en bild**. Klicka på målningen, fyll i titel, år, upphovsrätt, målningsnummer, pris, medium och dimensioner och klicka **Spara uppgifter**. Dra korten eller använd pilarna för att ändra ordning. **Ta bort målning** markerar den för borttagning; du kan ångra innan publicering. Klicka **Publicera ändringar** när allt är klart. Då skickas bilder, uppgifter, ordning och borttagningar till GitHub. Webbplatsen uppdateras efter att GitHub Pages har byggt den.
 
-## Lägg till en målning
+Ändringar stannar lokalt i programmet tills du publicerar. Om någon annan har uppdaterat projektet under tiden får du starta om programmet och göra om dina opublicerade ändringar. Om Git skapar en commit men uppladdningen misslyckas kan du försöka publicera igen i samma program.
 
-1. Lägg en `.jpg`, `.jpeg`, `.png`, `.webp`, `.svg` eller `.gif` i `assets/` och pusha ändringen. Filnamnet ska inte börja med `_`, eftersom Jekyll då hoppar över filen.
-2. Lägg till en post i `_data/artworks.json` med **exakt samma filnamn** som nyckel. Där kan du ange `title`, `year`, `copyright`, `painting_number`, `price`, `medium` och `dimensions`.
-
-En bild visas även utan en JSON-post. Då visas ”Utan titel” och värdena under `_defaults` för övriga uppgifter. Ändra standardvärdena i JSON-filen om de ska gälla för alla nya bilder. Alla befintliga bilder har upphovsrätt angiven som Andreas Segeljakt; övriga detaljer står som ”Ej angivet” tills riktiga uppgifter fylls i. Ange priser som text, till exempel `"4 500 kr"`.
-
-Museet visar bilderna i bokstavsordning efter filnamn. Klicka på en bild för att se den större. Bildspelet på startsidan har en egen ordning som fortfarande styrs i `script.js`.
+Bildordningen ligger i `_order` i `_data/artworks.json` och används både i Museum och i startsidans bildspel. Bilder som läggs direkt i `assets/` utan att finnas i `_order` visas sist. En bild utan JSON-post visas som ”Utan titel” med standardvärdena från `_defaults`.
 
 ## Byt färgtema
 

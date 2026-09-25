@@ -1,64 +1,74 @@
 {
-    "_defaults":  {
-                      "year":  "Ej angivet",
-                      "copyright":  "Andreas Segeljakt",
-                      "painting_number":  "Ej angivet",
-                      "price":  "Ej angivet",
-                      "medium":  "Ej angivet",
-                      "dimensions":  "Ej angivet"
-                  },
-    "Picassos-Drömlandskap.jpg":  {
-                                      "title":  "Picassos Drömlandskap",
-                                      "year":  "2026",
-                                      "copyright":  "Andreas Segeljakt",
-                                      "painting_number":  "10",
-                                      "price":  "Ej angivet",
-                                      "medium":  "Ej angivet",
-                                      "dimensions":  "Ej angivet"
-                                  },
-    "Bergsleden.jpg":  {
-                           "title":  "Test",
-                           "year":  "2026",
-                           "copyright":  "Andreas Segeljakt",
-                           "painting_number":  "Olja",
-                           "price":  "10000",
-                           "medium":  "Ej angivet",
-                           "dimensions":  "Ej angivet"
-                       },
-    "Bergstunnel.jpg":  {
-                            "title":  "Test",
-                            "year":  "2026",
-                            "copyright":  "Andreas Segeljakt",
-                            "painting_number":  "Olja",
-                            "price":  "12000",
-                            "medium":  "Ej angivet",
-                            "dimensions":  "Ej angivet"
-                        },
-    "Picassos-Mysfilt.svg":  {
-                                 "title":  "Picassos Mysfilt",
-                                 "year":  "Ej angivet",
-                                 "copyright":  "Andreas Segeljakt",
-                                 "painting_number":  "Ej angivet",
-                                 "price":  "Ej angivet",
-                                 "medium":  "Ej angivet",
-                                 "dimensions":  "Ej angivet"
-                             },
-    "MonaElvisPresley.jpg":  {
-                                 "title":  "Mona Elvis Presley",
-                                 "year":  "2026",
-                                 "copyright":  "Andreas Segeljakt",
-                                 "painting_number":  "1",
-                                 "price":  "7500 kr",
-                                 "medium":  "Olja",
-                                 "dimensions":  "50*70 cm"
-                             },
-    "PicassosHusmus.jpg":  {
-                               "title":  "Picassos Husmus",
-                               "year":  "Ej angivet",
-                               "copyright":  "Andreas Segeljakt",
-                               "painting_number":  "Ej angivet",
-                               "price":  "Ej angivet",
-                               "medium":  "Ej angivet",
-                               "dimensions":  "Ej angivet"
-                           }
+  "_defaults": {
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos-Drömlandskap.jpg": {
+    "title": "Picassos Drömlandskap",
+    "year": "2026",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "10",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Bergsleden.jpg": {
+    "title": "Test",
+    "year": "2026",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Olja",
+    "price": "10000",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Bergstunnel.jpg": {
+    "title": "Test",
+    "year": "2026",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Olja",
+    "price": "12000",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos-Mysfilt.svg": {
+    "title": "Picassos Mysfilt",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "MonaElvisPresley.jpg": {
+    "title": "Mona Elvis Presley",
+    "year": "2026",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "1",
+    "price": "7500 kr",
+    "medium": "Olja",
+    "dimensions": "50*70 cm"
+  },
+  "PicassosHusmus.jpg": {
+    "title": "Picassos Husmus",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "painting_number": "Ej angivet",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "_order": [
+    "Picassos-Drömlandskap.jpg",
+    "Picassos-Mysfilt.svg",
+    "Bergsleden.jpg",
+    "Bergstunnel.jpg",
+    "Picassos Abstrakta Mystism.jpg",
+    "Picassos Abstrakta Mystism 2.jpg",
+    "MonaElvisPresley.jpg",
+    "PicassosHusmus.jpg"
+  ]
 }
