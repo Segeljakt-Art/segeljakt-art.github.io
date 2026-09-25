@@ -30,6 +30,8 @@ Bildordningen ligger i `_order` i `_data/artworks.json` och används både i Mus
 
 `data-theme` kan vara `sand` (nuvarande ljusa tema), `sage` (grönt) eller `charcoal` (mörkt). `data-artwork-view` styr bakgrunden och texten **när en museibild är förstorad**: välj `light` eller `dark`. Inställningarna är oberoende, så till exempel `data-theme="sand"` kan kombineras med `data-artwork-view="dark"`. Färgerna för varje tema finns samlade högst upp i `styles.css`; där kan du ändra exakta färgkoder.
 
+Besökare kan växla mellan ljust och mörkt läge med knappen i webbplatsens sidhuvud. Valet sparas i deras webbläsare. Ljust läge använder det valda ljusa temat (`sand` eller `sage`) och den valda bakgrunden för förstorade bilder; mörkt läge använder `charcoal` och mörk bildbakgrund. I den lokala förhandsvisningen börjar sidan alltid med temat som valts i gallerihanteraren.
+
 ## Förhandsvisa lokalt
 
 Sidan använder Jekyll för att läsa bildmappen och JSON-filen. Kör `jekyll build --destination /tmp/segeljakt-preview` från projektmappen och servera sedan den byggda mappen, till exempel med `python3 -m http.server 8000 --directory /tmp/segeljakt-preview`. Öppna `http://localhost:8000`.

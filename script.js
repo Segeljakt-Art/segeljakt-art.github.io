@@ -7,6 +7,37 @@ const slides = [...document.querySelectorAll("#museum-scroll figure")].map(figur
   };
 });
 
+const themeRoot = document.documentElement;
+const configuredTheme = themeRoot.dataset.theme;
+const configuredArtworkView = themeRoot.dataset.artworkView;
+const lightTheme = configuredTheme === "charcoal" ? "sand" : configuredTheme;
+const themeToggle = document.querySelector("#theme-toggle");
+const browserThemeColor = document.querySelector('meta[name="theme-color"]');
+const isManagerPreview = window.location.pathname.endsWith("/preview");
+let darkMode = configuredTheme === "charcoal";
+
+function setColorMode(dark, save = false) {
+  darkMode = dark;
+  themeRoot.dataset.theme = dark ? "charcoal" : lightTheme;
+  themeRoot.dataset.artworkView = dark ? "dark" : configuredArtworkView;
+  themeToggle.setAttribute("aria-pressed", String(dark));
+  themeToggle.querySelector(".theme-toggle-icon").textContent = dark ? "☀" : "☾";
+  themeToggle.querySelector(".theme-toggle-text").textContent = dark ? "Ljust läge" : "Mörkt läge";
+  if (browserThemeColor) browserThemeColor.content = getComputedStyle(themeRoot).getPropertyValue("--paper").trim();
+  if (save && !isManagerPreview) {
+    try { window.localStorage.setItem("segeljakt-color-mode", dark ? "dark" : "light"); } catch (_) { /* Private browsing can block storage. */ }
+  }
+}
+
+if (!isManagerPreview) {
+  try {
+    const savedMode = window.localStorage.getItem("segeljakt-color-mode");
+    if (savedMode === "dark" || savedMode === "light") darkMode = savedMode === "dark";
+  } catch (_) { /* Use the configured theme when storage is unavailable. */ }
+}
+setColorMode(darkMode);
+themeToggle.addEventListener("click", () => setColorMode(!darkMode, true));
+
 const track = document.querySelector("#painting-track");
 const images = [...track.querySelectorAll(".painting")];
 const paintingWrap = document.querySelector(".painting-wrap");
@@ -236,8 +267,3 @@ activateSection(window.location.hash.slice(1));
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector("#footer-year").textContent = new Date().getFullYear();
-
-const browserThemeColor = document.querySelector('meta[name="theme-color"]');
-if (browserThemeColor) {
-  browserThemeColor.content = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
-}
