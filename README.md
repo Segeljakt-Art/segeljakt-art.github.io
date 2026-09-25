@@ -8,9 +8,9 @@ Installera [Git](https://git-scm.com/downloads) och [Python 3](https://www.pytho
 
 Öppna den klonade projektmappen och dubbelklicka på **Hantera galleri.command** på Mac eller **Hantera galleri.cmd** på Windows. En lokal sida öppnas i webbläsaren. På Mac öppnas även ett Terminal-fönster som ska vara öppet medan du arbetar. Programmet använder bara Python-standardbiblioteket; inga extra Python-paket behövs.
 
-På sidan ser du alla målningar med miniatyrbilder. Släpp en JPG-, PNG-, WebP- eller GIF-bild på sidan, eller klicka **välj en bild**. Klicka på målningen, fyll i titel, år, upphovsrätt, målningsnummer, pris, medium och dimensioner och klicka **Spara uppgifter**. Dra korten eller använd pilarna för att ändra ordning. **Ta bort målning** markerar den för borttagning; du kan ångra innan publicering. Klicka **Publicera ändringar** när allt är klart. Då skickas bilder, uppgifter, ordning och borttagningar till GitHub. Webbplatsen uppdateras efter att GitHub Pages har byggt den.
+På sidan ser du alla målningar med miniatyrbilder. Släpp en JPG-, PNG-, WebP- eller GIF-bild på sidan, eller klicka **välj en bild**. Klicka på målningen, fyll i titel, år, upphovsrätt, pris, medium och dimensioner och klicka **Spara uppgifter**. Dra korten eller använd pilarna för att ändra ordning. **Ta bort målning** markerar den för borttagning; du kan ångra innan publicering. Klicka **Publicera ändringar** när allt är klart. Då skickas bilder, uppgifter, ordning och borttagningar till GitHub. Webbplatsen uppdateras efter att GitHub Pages har byggt den.
 
-Nya målningar får automatiskt nästa målningsnummer efter det högsta befintliga numret. Numret visas i formuläret och kan ändras innan publicering. Befintliga målningars nummer ändras inte.
+Nya målningar får automatiskt nästa målningsnummer efter det högsta befintliga numret. Numret visas i formuläret men kan inte ändras. Befintliga målningars nummer ändras inte.
 
 Ändringar stannar lokalt i programmet tills du publicerar. Om någon annan har uppdaterat projektet under tiden får du starta om programmet och göra om dina opublicerade ändringar. Om Git skapar en commit men uppladdningen misslyckas kan du försöka publicera igen i samma program.
 

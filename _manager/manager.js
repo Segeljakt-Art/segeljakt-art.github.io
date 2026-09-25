@@ -177,11 +177,12 @@ function renderInspector() {
     input.value = item.details[key] || "";
     input.maxLength = 500;
     input.required = true;
-    input.addEventListener("input", () => { formDirty = true; message("Uppgifterna är ändrade. Spara dem innan du publicerar."); });
+    if (key === "painting_number") input.readOnly = true;
+    else input.addEventListener("input", () => { formDirty = true; message("Uppgifterna är ändrade. Spara dem innan du publicerar."); });
     wrapper.append(input);
-    if (key === "painting_number" && item.new) {
+    if (key === "painting_number") {
       const hint = document.createElement("small");
-      hint.textContent = "Tilldelat automatiskt. Du kan ändra numret.";
+      hint.textContent = "Tilldelas automatiskt och kan inte ändras.";
       wrapper.append(hint);
     }
     form.append(wrapper);

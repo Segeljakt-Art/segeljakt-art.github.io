@@ -53,7 +53,7 @@ class GalleryManagerTests(unittest.TestCase):
 
     def test_add_edit_reorder_restore_and_publish(self):
         self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
-        details = {"title": "Ny målning", "year": "2026", "copyright": "Andreas Segeljakt", "painting_number": "3", "price": "500 kr", "medium": "Olja", "dimensions": "20 × 30 cm"}
+        details = {"title": "Ny målning", "year": "2026", "copyright": "Andreas Segeljakt", "painting_number": "1", "price": "500 kr", "medium": "Olja", "dimensions": "20 × 30 cm"}
         self.session.update("new.png", details)
         self.session.reorder(["new.png", "first.jpg", "second.jpg"])
         self.session.delete("first.jpg")
@@ -76,6 +76,19 @@ class GalleryManagerTests(unittest.TestCase):
         with self.assertRaises(manager.GalleryError):
             self.session.publish()
         self.assertFalse((manager.ASSETS / "new.png").exists())
+
+    def test_reject_changes_to_painting_number(self):
+        self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
+        details = dict(self.session.entries["new.png"])
+        details["title"] = "Ny målning"
+        details["painting_number"] = "99"
+        with self.assertRaisesRegex(manager.GalleryError, "kan inte ändras"):
+            self.session.update("new.png", details)
+        self.assertEqual(self.session.entries["new.png"]["painting_number"], "1")
+        existing = dict(self.session.entries["first.jpg"])
+        existing["painting_number"] = "7"
+        with self.assertRaisesRegex(manager.GalleryError, "kan inte ändras"):
+            self.session.update("first.jpg", existing)
 
     def test_new_paintings_receive_stable_sequential_numbers(self):
         data = json.loads(manager.DATA.read_text(encoding="utf-8"))

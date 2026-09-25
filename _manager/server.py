@@ -153,6 +153,8 @@ class GallerySession:
             cleaned = {key: str(details[key]).strip() for key in FIELDS}
             if any(not value or len(value) > 500 for value in cleaned.values()):
                 raise GalleryError("Fyll i alla fält. Använd ”Ej angivet” om något är okänt.")
+            if cleaned["painting_number"] != self.entries[name]["painting_number"]:
+                raise GalleryError("Målningsnumret tilldelas automatiskt och kan inte ändras.")
             self.entries[name] = cleaned
             self.dirty = True
             return self.state()
