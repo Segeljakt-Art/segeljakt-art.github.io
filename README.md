@@ -12,6 +12,8 @@ På sidan ser du alla målningar med miniatyrbilder. Släpp en JPG-, PNG-, WebP-
 
 Ändringar stannar lokalt i programmet tills du publicerar. Om någon annan har uppdaterat projektet under tiden får du starta om programmet och göra om dina opublicerade ändringar. Om Git skapar en commit men uppladdningen misslyckas kan du försöka publicera igen i samma program.
 
+I gallerihanteraren kan du även välja **Ordna efter** pris, storlek, år, titel, medium eller målningsnummer och klicka **Använd ordning**. Den ordningen sparas på webbplatsen när du publicerar. Besökare kan sortera Museum tillfälligt med menyn **Sortera**; det ändrar inte den sparade ordningen. Storlek jämförs som yta i cm² när måtten kan läsas som bredd × höjd i mm, cm eller m. Mått i pixlar och okända värden hamnar sist.
+
 Bildordningen ligger i `_order` i `_data/artworks.json` och används både i Museum och i startsidans bildspel. Bilder som läggs direkt i `assets/` utan att finnas i `_order` visas sist. En bild utan JSON-post visas som ”Utan titel” med standardvärdena från `_defaults`.
 
 ## Byt färgtema

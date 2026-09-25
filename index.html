@@ -12,8 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-12" />
-    <script src="./script.js?v=sv-12" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=sv-13" />
+    <script src="./artwork-sort.js?v=1" defer></script>
+    <script src="./script.js?v=sv-13" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -108,6 +109,21 @@ SIDBAREN
           </section>
           <section class="content-section museum-section" id="museum" aria-labelledby="museum-heading">
             <h2 class="sr-only" id="museum-heading">Museum</h2>
+            <div class="museum-toolbar">
+              <label for="museum-sort">Sortera</label>
+              <select id="museum-sort" aria-label="Sortera målningar i Museum">
+                <option value="order">Galleriordning</option>
+                <option value="title">Titel A–Ö</option>
+                <option value="price-asc">Pris: lägst först</option>
+                <option value="price-desc">Pris: högst först</option>
+                <option value="area-asc">Storlek: minst först</option>
+                <option value="area-desc">Storlek: störst först</option>
+                <option value="year-asc">År: äldst först</option>
+                <option value="year-desc">År: nyast först</option>
+                <option value="medium">Medium A–Ö</option>
+                <option value="number">Målningsnummer</option>
+              </select>
+            </div>
             <div class="museum-gallery">
               <div class="scroll-container" id="museum-scroll" role="region" aria-label="Bilder i museet" tabindex="0">
                 {% assign museum_files = site.static_files | sort: "path" %}

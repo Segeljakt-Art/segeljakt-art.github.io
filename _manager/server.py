@@ -268,8 +268,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/":
             html = (HERE / "manager.html").read_text(encoding="utf-8").replace("__TOKEN__", TOKEN)
             self.send_bytes(200, html.encode("utf-8"), "text/html; charset=utf-8")
-        elif path == "/manager.css" or path == "/manager.js":
-            file = HERE / path[1:]
+        elif path in {"/manager.css", "/manager.js", "/artwork-sort.js"}:
+            file = ROOT / "artwork-sort.js" if path == "/artwork-sort.js" else HERE / path[1:]
             self.send_bytes(200, file.read_bytes(), "text/css; charset=utf-8" if path.endswith(".css") else "text/javascript; charset=utf-8")
         elif path == "/api/state":
             self.send_json(200, SESSION.state())

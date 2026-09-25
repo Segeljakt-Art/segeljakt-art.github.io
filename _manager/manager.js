@@ -67,6 +67,17 @@ function createButton(text, callback, className) {
   button.addEventListener("click", callback);
   return button;
 }
+document.querySelector("#apply-sort").addEventListener("click", async () => {
+  if (formDirty && !confirmDiscard()) return;
+  const mode = document.querySelector("#manager-sort").value;
+  const names = window.artworkSort.sort(state.artworks, item => item.details, mode).map(item => item.name);
+  if (names.every((name, index) => name === state.artworks[index].name)) {
+    message("Målningarna har redan den ordningen.");
+    return;
+  }
+  if (await action("/api/reorder", { order: names })) message("Ordningen är ändrad. Klicka Publicera när du är klar.");
+});
+
 function renderCards() {
   grid.replaceChildren();
   state.artworks.forEach((item, index) => {

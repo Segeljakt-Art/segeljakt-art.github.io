@@ -6,6 +6,7 @@
   <meta name="gallery-token" content="__TOKEN__">
   <title>Gallerihanterare · Segeljakt art</title>
   <link rel="stylesheet" href="/manager.css">
+  <script src="/artwork-sort.js" defer></script>
   <script src="/manager.js" defer></script>
 </head>
 <body>
@@ -27,6 +28,13 @@
         <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
       </section>
       <div class="section-heading"><h2>Alla målningar</h2><span>Dra för ordning · klicka för detaljer</span></div>
+      <div class="sort-tools"><label for="manager-sort">Ordna efter</label><select id="manager-sort">
+        <option value="title">Titel A–Ö</option>
+        <option value="price-asc">Pris: lägst först</option><option value="price-desc">Pris: högst först</option>
+        <option value="area-asc">Storlek: minst först</option><option value="area-desc">Storlek: störst först</option>
+        <option value="year-asc">År: äldst först</option><option value="year-desc">År: nyast först</option>
+        <option value="medium">Medium A–Ö</option><option value="number">Målningsnummer</option>
+      </select><button id="apply-sort" type="button">Använd ordning</button></div>
       <div class="gallery-grid" id="gallery-grid"></div>
       <section class="removed" id="removed" hidden><h2>Borttagna i den här omgången</h2><div id="removed-list"></div></section>
     </main>

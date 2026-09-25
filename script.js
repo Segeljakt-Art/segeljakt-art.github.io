@@ -127,6 +127,12 @@ document.addEventListener("visibilitychange", scheduleAuto);
 reducedMotion.addEventListener("change", scheduleAuto);
 
 const museumScroll = document.querySelector("#museum-scroll");
+const museumOriginalOrder = [...museumScroll.querySelectorAll("figure")];
+document.querySelector("#museum-sort").addEventListener("change", event => {
+  const figures = window.artworkSort.sort(museumOriginalOrder, figure => figure.dataset, event.target.value);
+  museumScroll.replaceChildren(...figures);
+  museumScroll.scrollTop = 0;
+});
 const artworkDialog = document.querySelector("#artwork-dialog");
 const artworkDialogImage = document.querySelector("#artwork-dialog-image");
 const artworkDialogTitle = document.querySelector("#artwork-dialog-title");
