@@ -127,6 +127,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .gallery-next { right: clamp(12px, 2vw, 30px); }
 @media (min-width: 761px) { .gallery-nav { display: grid; } .artwork-stage, .artwork-stage:active { cursor: default; } .gesture-hint { display: none; } }
 .painting { flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(1px 12px 10px rgba(50, 44, 36, .16)); }
+#slide-image { cursor: pointer; }
 .stage-corner { position: absolute; z-index: 1; width: 36px; height: 36px; pointer-events: none; }
 .stage-corner-top { top: 27px; left: 27px; border-top: 1px solid var(--stage-detail); border-left: 1px solid var(--stage-detail); }
 .stage-corner-bottom { right: 27px; bottom: 27px; border-bottom: 1px solid var(--stage-detail); border-right: 1px solid var(--stage-detail); }
@@ -161,8 +162,7 @@ h1 em, .content-grid h2 em { color: var(--accent); font-weight: 400; }
 .scroll-container::-webkit-scrollbar-track { background: var(--line); }
 .scroll-container::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--accent); }
 .scroll-container figure { min-width: 0; margin: 0; padding: 6px; border: 1px solid var(--line); background: var(--card-bg); }
-.museum-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: grab; }
-.museum-image-button:active { cursor: grabbing; }
+.museum-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .scroll-container img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--paper-deep); }
 .scroll-container figcaption { padding: 8px 2px 2px; color: var(--muted); font-size: 10px; line-height: 1.35; }
 .artwork-title { display: block; margin-bottom: 5px; color: var(--ink); font-size: 11px; font-weight: 600; }

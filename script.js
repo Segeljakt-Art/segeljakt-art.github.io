@@ -3,7 +3,8 @@ const slides = [...document.querySelectorAll("#museum-scroll figure")].map(figur
   return {
     image: image.getAttribute("src"),
     alt: image.alt,
-    title: figure.querySelector(".artwork-title").textContent.trim()
+    title: figure.querySelector(".artwork-title").textContent.trim(),
+    trigger: figure.querySelector(".museum-image-button")
   };
 });
 
@@ -55,6 +56,7 @@ let currentSlide = 0;
 let autoTimer;
 let transitioning = false;
 let drag = null;
+let lastGalleryDragAt = -Infinity;
 
 function wrappedIndex(index) {
   return (index + slides.length) % slides.length;
@@ -84,7 +86,7 @@ function setTrackOffset(offset, animate) {
 
 function scheduleAuto() {
   window.clearTimeout(autoTimer);
-  if (!slides.length || document.hidden || !gallery.classList.contains("is-current") || drag) return;
+  if (!slides.length || document.hidden || !gallery.classList.contains("is-current") || drag || artworkDialog.open) return;
   autoTimer = window.setTimeout(() => moveSlide(1), autoDelay);
 }
 
@@ -115,6 +117,7 @@ function endDrag(cancelled) {
   if (!drag) return;
   const offset = drag.offset;
   const horizontal = drag.axis === "horizontal";
+  if (horizontal && Math.abs(offset) > 5) lastGalleryDragAt = performance.now();
   drag = null;
   swipeArea.classList.remove("is-dragging");
   const threshold = Math.min(90, Math.max(32, paintingWrap.clientWidth * .14));
@@ -177,6 +180,7 @@ let lastMuseumTrigger;
 let pendingMuseumTrigger;
 let museumFadeTimer;
 let museumFadeFrame;
+let galleryDialogOpen = false;
 
 function showMuseumArtwork(trigger) {
   const artwork = trigger.querySelector("img");
@@ -189,7 +193,7 @@ function showMuseumArtwork(trigger) {
 }
 
 function moveMuseumArtwork(direction) {
-  const triggers = [...museumScroll.querySelectorAll(".museum-image-button")];
+  const triggers = galleryDialogOpen ? slides.map(slide => slide.trigger) : [...museumScroll.querySelectorAll(".museum-image-button")];
   if (!triggers.length) return;
   const index = triggers.indexOf(pendingMuseumTrigger || lastMuseumTrigger);
   pendingMuseumTrigger = triggers[(index + direction + triggers.length) % triggers.length];
@@ -215,6 +219,16 @@ museumScroll.addEventListener("click", event => {
   artworkDialog.showModal();
 });
 
+swipeArea.addEventListener("click", event => {
+  if (desktopGallery.matches && event.target.id !== "slide-image") return;
+  if (event.target.closest(".gallery-nav")) return;
+  if (transitioning || performance.now() - lastGalleryDragAt < 150 || !slides.length) return;
+  galleryDialogOpen = true;
+  window.clearTimeout(autoTimer);
+  showMuseumArtwork(slides[currentSlide].trigger);
+  artworkDialog.showModal();
+});
+
 dialogPrev.addEventListener("click", () => moveMuseumArtwork(-1));
 dialogNext.addEventListener("click", () => moveMuseumArtwork(1));
 artworkDialog.addEventListener("keydown", event => {
@@ -236,7 +250,19 @@ artworkDialog.addEventListener("close", () => {
   window.cancelAnimationFrame(museumFadeFrame);
   pendingMuseumTrigger = null;
   artworkDialog.classList.remove("is-changing");
-  lastMuseumTrigger?.focus();
+  if (galleryDialogOpen) {
+    const index = slides.findIndex(slide => slide.trigger === lastMuseumTrigger);
+    if (index >= 0) {
+      currentSlide = index;
+      renderSlide();
+      setTrackOffset(0, false);
+    }
+    galleryDialogOpen = false;
+    slideshow.focus();
+    scheduleAuto();
+  } else {
+    lastMuseumTrigger?.focus();
+  }
 });
 
 const navLinks = [...document.querySelectorAll(".nav-link")];
