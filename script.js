@@ -40,6 +40,7 @@ themeToggle.addEventListener("click", () => setColorMode(!darkMode, true));
 
 const track = document.querySelector("#painting-track");
 const images = [...track.querySelectorAll(".painting")];
+const incomingPainting = document.querySelector("#incoming-painting");
 const paintingWrap = document.querySelector(".painting-wrap");
 const slideshow = document.querySelector(".slideshow");
 const swipeArea = document.querySelector(".artwork-stage");
@@ -48,8 +49,8 @@ const title = document.querySelector("#slide-title");
 const indexLabel = document.querySelector("#slide-index");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const autoDelay = 7000;
-const slideDuration = 320;
-const galleryFadeDuration = 300;
+const galleryFadeDuration = 460;
+const desktopGallery = window.matchMedia("(min-width: 761px)");
 let currentSlide = 0;
 let autoTimer;
 let transitioning = false;
@@ -77,7 +78,7 @@ function renderSlide() {
 }
 
 function setTrackOffset(offset, animate) {
-  track.style.transitionDuration = animate && !reducedMotion.matches ? "" : "0s";
+  track.style.transitionDuration = animate && !reducedMotion.matches ? ".32s, .46s" : "0s, .46s";
   track.style.transform = `translate3d(-100%, 0, 0) translate3d(${offset}px, 0, 0)`;
 }
 
@@ -91,22 +92,22 @@ function moveSlide(direction) {
   if (!slides.length || transitioning) return;
   window.clearTimeout(autoTimer);
   transitioning = true;
-  slideshow.classList.add("is-fading");
-  const destination = direction > 0 ? -paintingWrap.clientWidth : paintingWrap.clientWidth;
+  const nextIndex = wrappedIndex(currentSlide + direction);
+  incomingPainting.src = slides[nextIndex].image;
   window.requestAnimationFrame(() => {
-    if (!reducedMotion.matches) setTrackOffset(destination, true);
+    slideshow.classList.add("is-crossfading");
     window.setTimeout(() => {
-      currentSlide = wrappedIndex(currentSlide + direction);
+      slideshow.classList.add("is-settling");
+      currentSlide = nextIndex;
       renderSlide();
       setTrackOffset(0, false);
+      slideshow.classList.remove("is-crossfading");
       window.requestAnimationFrame(() => {
-        slideshow.classList.remove("is-fading");
-        window.setTimeout(() => {
-          transitioning = false;
-          scheduleAuto();
-        }, galleryFadeDuration);
+        slideshow.classList.remove("is-settling");
+        transitioning = false;
+        scheduleAuto();
       });
-    }, slideDuration);
+    }, galleryFadeDuration);
   });
 }
 
@@ -129,8 +130,10 @@ slideshow.addEventListener("keydown", event => {
   if (event.key === "ArrowLeft") { event.preventDefault(); moveSlide(-1); }
   if (event.key === "ArrowRight") { event.preventDefault(); moveSlide(1); }
 });
+document.querySelector("#gallery-prev").addEventListener("click", () => moveSlide(-1));
+document.querySelector("#gallery-next").addEventListener("click", () => moveSlide(1));
 swipeArea.addEventListener("pointerdown", event => {
-  if (!slides.length || transitioning || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+  if (desktopGallery.matches || !slides.length || transitioning || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
   window.clearTimeout(autoTimer);
   drag = { id: event.pointerId, x: event.clientX, y: event.clientY, offset: 0, axis: null };
   swipeArea.setPointerCapture(event.pointerId);

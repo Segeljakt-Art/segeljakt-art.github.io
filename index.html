@@ -12,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=sv-17" />
+    <link rel="stylesheet" href="./styles.css?v=sv-18" />
     <script src="./artwork-sort.js?v=1" defer></script>
-    <script src="./script.js?v=sv-17" defer></script>
+    <script src="./script.js?v=sv-18" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -58,17 +58,20 @@ SIDBAREN
 
         <main id="main">
           <section class="gallery-section" id="gallery" aria-label="Galleri">
-            <p class="sr-only" id="gallery-instructions">Dra eller svep åt vänster eller höger för att byta målning. Med tangentbord använder du vänster och höger piltangent.</p>
+            <p class="sr-only" id="gallery-instructions">På dator använder du knapparna eller vänster och höger piltangent. På mobil sveper du åt sidan för att byta målning.</p>
             <div class="slideshow" role="region" aria-roledescription="bildspel" aria-label="Målningsgalleri" aria-describedby="gallery-instructions" tabindex="0">
               <div class="artwork-stage">
                 <span class="stage-corner stage-corner-top" aria-hidden="true"></span>
+                <button class="gallery-nav gallery-prev" id="gallery-prev" type="button" aria-label="Föregående målning">‹</button>
                 <div class="painting-wrap">
                   <div class="painting-track" id="painting-track">
                     <img class="painting" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
                     <img id="slide-image" class="painting" alt="" width="900" height="680" draggable="false" />
                     <img class="painting" alt="" aria-hidden="true" width="900" height="680" draggable="false" />
                   </div>
+                  <img class="painting-overlay" id="incoming-painting" alt="" aria-hidden="true" draggable="false" />
                 </div>
+                <button class="gallery-nav gallery-next" id="gallery-next" type="button" aria-label="Nästa målning">›</button>
                 <span class="stage-corner stage-corner-bottom" aria-hidden="true"></span>
                 <span class="stage-label">MÅLNINGAR <span aria-hidden="true">/</span> 2026</span>
               </div>
@@ -81,7 +84,7 @@ SIDBAREN
                     <p class="slide-copyright">© Andreas Segeljakt</p>
                   </div>
                 </div>
-                <span class="gesture-hint">DRA I SIDLED</span>
+                <span class="gesture-hint">SVEP I SIDLED</span>
               </div>
             </div>
             <div class="gallery-bottom"><span class="mobile-swipe-hint">SVEP I SIDLED FÖR FLER MÅLNINGAR</span></div>
