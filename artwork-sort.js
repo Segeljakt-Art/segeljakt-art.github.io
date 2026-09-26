@@ -35,8 +35,7 @@ window.artworkSort = (() => {
     "area-desc": [details => area(details.dimensions), true],
     "year-asc": [details => year(details.year), false],
     "year-desc": [details => year(details.year), true],
-    medium: [details => number(details.medium), false],
-    number: [details => number(details.painting_number ?? details.paintingNumber), false]
+    medium: [details => number(details.medium), false]
   };
 
   function sort(items, detailsOf, mode) {

@@ -34,7 +34,7 @@ class GalleryManagerTests(unittest.TestCase):
         (self.repo / "assets" / "first.jpg").write_bytes(b"\xff\xd8\xfffirst")
         (self.repo / "assets" / "second.jpg").write_bytes(b"\xff\xd8\xffsecond")
         data = {
-            "_defaults": {"year": "Ej angivet", "copyright": "Andreas Segeljakt", "painting_number": "Ej angivet", "price": "Ej angivet", "medium": "Ej angivet", "dimensions": "Ej angivet"},
+            "_defaults": {"year": "Ej angivet", "copyright": "Andreas Segeljakt", "price": "Ej angivet", "medium": "Ej angivet", "dimensions": "Ej angivet"},
             "_order": ["first.jpg", "second.jpg"],
             "first.jpg": {"title": "Första"},
             "second.jpg": {"title": "Andra"},
@@ -54,7 +54,7 @@ class GalleryManagerTests(unittest.TestCase):
 
     def test_add_edit_reorder_restore_and_publish(self):
         self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
-        details = {"title": "Ny målning", "year": "2026", "copyright": "Andreas Segeljakt", "painting_number": "1", "price": "500 kr", "medium": "Olja", "dimensions": "20 × 30 cm"}
+        details = {"title": "Ny målning", "year": "2026", "copyright": "Andreas Segeljakt", "price": "500 kr", "medium": "Olja", "dimensions": "20 × 30 cm"}
         self.session.update("new.png", details)
         self.session.reorder(["new.png", "first.jpg", "second.jpg"])
         self.session.delete("first.jpg")
@@ -78,43 +78,21 @@ class GalleryManagerTests(unittest.TestCase):
             self.session.publish()
         self.assertFalse((manager.ASSETS / "new.png").exists())
 
-    def test_reject_changes_to_painting_number(self):
+    def test_painting_number_is_not_created_or_accepted(self):
         self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
+        self.assertNotIn("painting_number", self.session.entries["new.png"])
         details = dict(self.session.entries["new.png"])
         details["title"] = "Ny målning"
         details["painting_number"] = "99"
-        with self.assertRaisesRegex(manager.GalleryError, "kan inte ändras"):
+        with self.assertRaises(manager.GalleryError):
             self.session.update("new.png", details)
-        self.assertEqual(self.session.entries["new.png"]["painting_number"], "1")
-        existing = dict(self.session.entries["first.jpg"])
-        existing["painting_number"] = "7"
-        with self.assertRaisesRegex(manager.GalleryError, "kan inte ändras"):
-            self.session.update("first.jpg", existing)
-
-    def test_new_paintings_receive_stable_sequential_numbers(self):
-        data = json.loads(manager.DATA.read_text(encoding="utf-8"))
-        data["first.jpg"]["painting_number"] = "10"
-        data["second.jpg"]["painting_number"] = "1"
-        manager.DATA.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-        git(self.repo, "add", "_data/artworks.json")
-        git(self.repo, "commit", "-m", "Add existing numbers")
-        git(self.repo, "push", "origin", "main")
-        self.session.load()
-        self.session.base_commit = git(self.repo, "rev-parse", "HEAD")
-        self.session.add("new.png", b"\x89PNG\r\n\x1a\nnew")
-        self.assertEqual(self.session.entries["new.png"]["painting_number"], "11")
-        self.session.add("discarded.png", b"\x89PNG\r\n\x1a\nother")
-        self.assertEqual(self.session.entries["discarded.png"]["painting_number"], "12")
-        self.session.delete("discarded.png")
-        self.session.add("another.png", b"\x89PNG\r\n\x1a\nlast")
-        self.assertEqual(self.session.entries["another.png"]["painting_number"], "13")
-        self.session.entries["new.png"]["title"] = "Ny"
-        self.session.entries["another.png"]["title"] = "En till"
+        details.pop("painting_number")
+        self.session.update("new.png", details)
         self.session.publish()
         saved = json.loads(manager.DATA.read_text(encoding="utf-8"))
-        self.assertEqual(saved["_next_painting_number"], 14)
-        self.session.add("later.png", b"\x89PNG\r\n\x1a\nlater")
-        self.assertEqual(self.session.entries["later.png"]["painting_number"], "14")
+        self.assertNotIn("painting_number", saved["new.png"])
+        self.assertNotIn("_next_painting_number", saved)
+        self.assertNotIn("Målningsnummer", self.session.preview())
 
     def test_theme_and_preview_include_unpublished_changes(self):
         self.session.set_theme("sage", "dark")

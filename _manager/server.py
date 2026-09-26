@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 DATA = ROOT / "_data" / "artworks.json"
 HERE = Path(__file__).resolve().parent
-FIELDS = ("title", "year", "copyright", "painting_number", "price", "medium", "dimensions")
+FIELDS = ("title", "year", "copyright", "price", "medium", "dimensions")
 EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"}
 UPLOAD_EXTENSIONS = EXTENSIONS - {".svg"}
 MAX_IMAGE_BYTES = 30 * 1024 * 1024
@@ -97,12 +97,6 @@ class GallerySession:
         html = (ROOT / "index.html").read_text(encoding="utf-8")
         self.theme = re.search(r'<html\b[^>]*data-theme="([^"]+)"', html).group(1)
         self.artwork_view = re.search(r'<html\b[^>]*data-artwork-view="([^"]+)"', html).group(1)
-        existing_numbers = [
-            int(info["painting_number"])
-            for info in self.data.values()
-            if isinstance(info, dict) and re.fullmatch(r"[0-9]+", str(info.get("painting_number", "")).strip())
-        ]
-        self.next_number = max(int(self.data.get("_next_painting_number", 1)), max(existing_numbers, default=0) + 1)
         files = {path.name for path in ASSETS.iterdir() if path.is_file() and path.suffix.lower() in EXTENSIONS and not path.name.startswith(('_', '.'))}
         saved_order = self.data.get("_order", [])
         self.order = [name for name in saved_order if name in files]
@@ -149,8 +143,8 @@ class GallerySession:
                 info = self.entries[name]
                 title = escape(info["title"] or "Utan titel", quote=True)
                 values = {key: escape(info[key], quote=True) for key in FIELDS}
-                lines = "".join(f'<span class="artwork-meta"><strong>{label}:</strong> {values[key]}</span>' for key, label in (("year", "År"), ("medium", "Medium"), ("dimensions", "Dimensioner"), ("painting_number", "Målningsnummer"), ("price", "Pris")))
-                cards.append(f'<figure data-title="{title}" data-price="{values["price"]}" data-dimensions="{values["dimensions"]}" data-year="{values["year"]}" data-medium="{values["medium"]}" data-painting-number="{values["painting_number"]}"><button class="museum-image-button" type="button" aria-label="Visa {title} större"><img src="/art/{quote(name)}" alt="{title}" loading="lazy"></button><figcaption><strong class="artwork-title">{title}</strong>{lines}<span class="artwork-meta">© {values["copyright"]}</span></figcaption></figure>')
+                lines = "".join(f'<span class="artwork-meta"><strong>{label}:</strong> {values[key]}</span>' for key, label in (("year", "År"), ("medium", "Medium"), ("dimensions", "Dimensioner"), ("price", "Pris")))
+                cards.append(f'<figure data-title="{title}" data-price="{values["price"]}" data-dimensions="{values["dimensions"]}" data-year="{values["year"]}" data-medium="{values["medium"]}"><button class="museum-image-button" type="button" aria-label="Visa {title} större"><img src="/art/{quote(name)}" alt="{title}" loading="lazy"></button><figcaption><strong class="artwork-title">{title}</strong>{lines}<span class="artwork-meta">© {values["copyright"]}</span></figcaption></figure>')
             html, count = re.subn(r'<!-- PREVIEW_ARTWORKS_START -->.*?<!-- PREVIEW_ARTWORKS_END -->', "\n".join(cards), html, count=1, flags=re.S)
             if count != 1:
                 raise GalleryError("Förhandsvisningen kunde inte skapas.")
@@ -175,10 +169,6 @@ class GallerySession:
             defaults = self.data.get("_defaults", {})
             self.entries[name] = {key: str(defaults.get(key, "")) for key in FIELDS}
             self.entries[name]["title"] = ""
-            used_numbers = [int(info["painting_number"]) for info in self.entries.values() if re.fullmatch(r"[0-9]+", info.get("painting_number", "").strip())]
-            number = max(self.next_number, max(used_numbers, default=0) + 1)
-            self.entries[name]["painting_number"] = str(number)
-            self.next_number = number + 1
             self.new_files[name] = target
             self.order.append(name)
             self.dirty = True
@@ -188,13 +178,11 @@ class GallerySession:
         with self.lock:
             if name not in self.order or self.pending_push:
                 raise GalleryError("Målningen kan inte redigeras.")
-            if not isinstance(details, dict) or any(key not in details for key in FIELDS):
+            if not isinstance(details, dict) or set(details) != set(FIELDS):
                 raise GalleryError("Alla uppgifter måste finnas med.")
             cleaned = {key: str(details[key]).strip() for key in FIELDS}
             if any(not value or len(value) > 500 for value in cleaned.values()):
                 raise GalleryError("Fyll i alla fält. Använd ”Ej angivet” om något är okänt.")
-            if cleaned["painting_number"] != self.entries[name]["painting_number"]:
-                raise GalleryError("Målningsnumret tilldelas automatiskt och kan inte ändras.")
             self.entries[name] = cleaned
             self.dirty = True
             return self.state()
@@ -256,13 +244,12 @@ class GallerySession:
             git("fetch", "origin", "main")
             if git("rev-parse", "origin/main") != self.base_commit:
                 raise GalleryError("Någon har uppdaterat projektet. Starta om programmet så att den senaste versionen hämtas.")
-            updated = dict(self.data)
+            updated = {key: value for key, value in self.data.items() if key != "_next_painting_number"}
             for name in self.deleted:
                 updated.pop(name, None)
             for name in self.order:
                 updated[name] = dict(self.entries[name])
             updated["_order"] = list(self.order)
-            updated["_next_painting_number"] = self.next_number
             html = (ROOT / "index.html").read_text(encoding="utf-8")
             html = re.sub(r'(<html\b[^>]*data-theme=")[^"]+', lambda match: match.group(1) + self.theme, html, count=1)
             html = re.sub(r'(<html\b[^>]*data-artwork-view=")[^"]+', lambda match: match.group(1) + self.artwork_view, html, count=1)

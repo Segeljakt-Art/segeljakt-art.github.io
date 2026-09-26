@@ -5,7 +5,7 @@
     {% assign info = site.data.artworks[artwork_file.name] %}
     {% assign defaults = site.data.artworks._defaults %}
     {% assign artwork_title = info.title | default: 'Utan titel' %}
-    <figure data-title="{{ artwork_title | escape }}" data-price="{{ info.price | default: defaults.price | escape }}" data-dimensions="{{ info.dimensions | default: defaults.dimensions | escape }}" data-year="{{ info.year | default: defaults.year | escape }}" data-medium="{{ info.medium | default: defaults.medium | escape }}" data-painting-number="{{ info.painting_number | default: defaults.painting_number | escape }}">
+    <figure data-title="{{ artwork_title | escape }}" data-price="{{ info.price | default: defaults.price | escape }}" data-dimensions="{{ info.dimensions | default: defaults.dimensions | escape }}" data-year="{{ info.year | default: defaults.year | escape }}" data-medium="{{ info.medium | default: defaults.medium | escape }}">
       <button class="museum-image-button" type="button" aria-label="Visa {{ artwork_title | escape }} större">
         <img src="{{ artwork_file.path | relative_url | escape }}" alt="{{ artwork_title | escape }}" loading="lazy" />
       </button>
@@ -14,7 +14,6 @@
         <span class="artwork-meta"><strong>År:</strong> {{ info.year | default: defaults.year | escape }}</span>
         <span class="artwork-meta"><strong>Medium:</strong> {{ info.medium | default: defaults.medium | escape }}</span>
         <span class="artwork-meta"><strong>Dimensioner:</strong> {{ info.dimensions | default: defaults.dimensions | escape }}</span>
-        <span class="artwork-meta"><strong>Målningsnummer:</strong> {{ info.painting_number | default: defaults.painting_number | escape }}</span>
         <span class="artwork-meta"><strong>Pris:</strong> {{ info.price | default: defaults.price | escape }}</span>
         <span class="artwork-meta">© {{ info.copyright | default: defaults.copyright | escape }}</span>
       </figcaption>

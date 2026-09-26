@@ -12,7 +12,7 @@ let selected = null;
 let formDirty = false;
 let busy = false;
 let closing = false;
-const labels = { title: "Titel", year: "År", copyright: "Upphovsrätt", painting_number: "Målningsnummer", price: "Pris", medium: "Medium", dimensions: "Dimensioner" };
+const labels = { title: "Titel", year: "År", copyright: "Upphovsrätt", price: "Pris", medium: "Medium", dimensions: "Dimensioner" };
 
 async function request(path, payload, fileName) {
   const options = { method: "POST", headers: { "X-Gallery-Token": token } };
@@ -97,7 +97,7 @@ function renderCards() {
     title.textContent = item.details.title || "Ny målning";
     const sub = document.createElement("span");
     sub.className = "art-card-sub";
-    sub.textContent = item.details.painting_number || "Ej angivet";
+    sub.textContent = item.details.year || "Ej angivet";
     main.append(img, title, sub);
     const actions = document.createElement("div");
     actions.className = "art-card-actions";
@@ -167,14 +167,8 @@ function renderInspector() {
     input.value = item.details[key] || "";
     input.maxLength = 500;
     input.required = true;
-    if (key === "painting_number") input.readOnly = true;
-    else input.addEventListener("input", () => { formDirty = true; message("Uppgifterna är ändrade. Spara dem innan du publicerar."); });
+    input.addEventListener("input", () => { formDirty = true; message("Uppgifterna är ändrade. Spara dem innan du publicerar."); });
     wrapper.append(input);
-    if (key === "painting_number") {
-      const hint = document.createElement("small");
-      hint.textContent = "Tilldelas automatiskt och kan inte ändras.";
-      wrapper.append(hint);
-    }
     form.append(wrapper);
   });
   const actions = document.createElement("div");
