@@ -32,7 +32,7 @@
   },
   "Picassos-Mysfilt.svg": {
     "title": "Picassos Mysfilt",
-    "year": "Ej angivet",
+    "year": "2026",
     "copyright": "Andreas Segeljakt",
     "price": "Ej angivet",
     "medium": "Ej angivet",
@@ -63,5 +63,21 @@
     "Picassos Abstrakta Mystism 2.jpg",
     "MonaElvisPresley.jpg",
     "PicassosHusmus.jpg"
-  ]
+  ],
+  "Picassos Abstrakta Mystism.jpg": {
+    "title": "Utan titel",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos Abstrakta Mystism 2.jpg": {
+    "title": "Utan titel",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  }
 }
