@@ -65,7 +65,8 @@
     "PicassosHusmus.jpg",
     "Tavla 2 Piccassos Stockholms Stadshus.jpg",
     "Picassos Blåa Veck.jpg",
-    "Picassos Drömlandskap.jpg"
+    "Picassos Drömlandskap.jpg",
+    "MonaAthanasios_Olja-Återställd.jpg"
   ],
   "Picassos Abstrakta Mystism.jpg": {
     "title": "Utan titel",
@@ -109,6 +110,14 @@
   },
   "Picassos Drömlandskap.jpg": {
     "title": "Picassos Drömlandskap",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "MonaAthanasios_Olja-Återställd.jpg": {
+    "title": "Mona Athanasios",
     "year": "Ej angivet",
     "copyright": "Andreas Segeljakt",
     "price": "Ej angivet",
