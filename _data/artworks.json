@@ -63,7 +63,9 @@
     "Picassos Abstrakta Mystism 2.jpg",
     "MonaElvisPresley.jpg",
     "PicassosHusmus.jpg",
-    "Tavla 2 Piccassos Stockholms Stadshus.jpg"
+    "Tavla 2 Piccassos Stockholms Stadshus.jpg",
+    "Picassos Blåa Veck.jpg",
+    "Picassos Drömlandskap.jpg"
   ],
   "Picassos Abstrakta Mystism.jpg": {
     "title": "Utan titel",
@@ -98,7 +100,15 @@
     "dimensions": "Ej angivet"
   },
   "Picassos Blåa Veck.jpg": {
-    "title": "Piccassos Blåa veck",
+    "title": "Picassos Blåa Veck",
+    "year": "Ej angivet",
+    "copyright": "Andreas Segeljakt",
+    "price": "Ej angivet",
+    "medium": "Ej angivet",
+    "dimensions": "Ej angivet"
+  },
+  "Picassos Drömlandskap.jpg": {
+    "title": "Picassos Drömlandskap",
     "year": "Ej angivet",
     "copyright": "Andreas Segeljakt",
     "price": "Ej angivet",
